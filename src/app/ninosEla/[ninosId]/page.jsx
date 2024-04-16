@@ -32,7 +32,7 @@ const page = async ({ params }) => {
                     <img src={product.img} alt={product.nombre} />
                     <div>
                         <div>{product.nombre}</div>
-                        <p>Precio: ${product.precio}</p>
+                        <p>Precio-: ${product.precio}</p>
                     </div>
                 </>
             )}
