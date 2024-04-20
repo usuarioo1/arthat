@@ -28,16 +28,21 @@ const page = async ({ params }) => {
     return (
         <div>
             {product && (
-                <>
-                    <img src={product.img} alt={product.nombre} />
-                    <div>
-                        <div>{product.nombre}</div>
-                        <p>Precio-: ${product.precio}</p>
+                <div className="flex bg-white shadow-lg rounded-lg overflow-hidden">
+                    <div className="w-1/4">
+                        <img className="h-full w-full object-cover" src={product.img} alt={product.nombre} />
                     </div>
-                </>
+                    <div className="w-2/3 p-4 pl-8">
+                        <h3 className="text-gray-800 font-semibold text-lg">{product.nombre}</h3>
+                        <p className="text-gray-600 mt-2">Descripción del producto...</p>
+                        <p className="text-gray-900 font-bold text-xl mt-2">Precio: ${product.precio}</p>
+                    </div>
+                </div>
             )}
         </div>
     );
 };
+
+
 
 export default page;

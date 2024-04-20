@@ -1,5 +1,6 @@
 import React from 'react'
-import ListaNinos from '../ninosEla/ListaNinos'
+import ListaMadres from './ListaMadres'
+
 
 const page = () => {
     return (
@@ -12,7 +13,6 @@ const page = () => {
                 </div>
             </div>
         </div>
-        <ListaNinos />
         </div>
     )
 }
