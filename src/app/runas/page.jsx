@@ -1,6 +1,7 @@
 import React from 'react'
 import ListaRunas from './ListaRunas'
 
+
 const page = () => {
   return (
     <div>

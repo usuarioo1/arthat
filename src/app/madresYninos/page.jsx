@@ -13,6 +13,7 @@ const page = () => {
                 </div>
             </div>
         </div>
+        <ListaMadres />
         </div>
     )
 }

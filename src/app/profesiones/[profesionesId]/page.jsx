@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export async function generateStaticParams() {
@@ -23,7 +24,7 @@ async function getProductById(id) {
 }
 
 const page = async ({ params }) => {
-    const product = await getProductById(params.madresId);
+    const product = await getProductById(params.profesionesId);
 
     return (
         <div>
