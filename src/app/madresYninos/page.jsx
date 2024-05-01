@@ -5,7 +5,7 @@ import ListaMadres from './ListaMadres'
 const page = () => {
     return (
         <div>
-        <div className="flex justify-center items-center mt-14">
+        <div className="flex justify-center items-center mt-32">
             <div className="w-64 mx-2 mb-4 bg-white shadow-lg rounded-lg overflow-hidden">
                 <img className="w-full h-40 object-cover" src="https://media.istockphoto.com/id/1216928523/es/foto/elegante-conjunto-de-joyas-de-anillo-de-oro-blanco-collar-y-pendientes-con-diamantes.jpg?s=612x612&w=0&k=20&c=RcPyl7QzR7pSFs2WsCKhxY_0_IIT6YMfa7qD39f47As=" alt="Imagen Madres y Niños" />
                 <div className="px-4 py-2">
