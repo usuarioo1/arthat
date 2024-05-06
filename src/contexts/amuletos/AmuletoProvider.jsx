@@ -1,10 +1,10 @@
-import { NinosContext } from "./NinosContext";
+import { AmuletosContext } from "./amuletosContext";
 import { useReducer } from "react";
-import ninoReducer from "./ninosReducer";
+import amuletosReducer from "./amuletosReducer";
 import React from 'react'
 import axiosClient from "@/config/axiosClient";
 
-const NinosProvider = ({ children }) => {
+const AmuletoProvider = ({ children }) => {
 
     const initialState = {
         products:[],
@@ -25,25 +25,25 @@ const NinosProvider = ({ children }) => {
         }]
     }
 
-    const [ninosState, dispatch] = useReducer(ninoReducer, initialState)
+    const [amuletosState, dispatch] = useReducer(amuletosReducer, initialState)
 
-    const getNinos = async () => {
+    const getAmuletos = async () => {
         const response = await axiosClient.get('games')
-        const ninos = response.data.info;
+        const amuletos = response.data.info;
         dispatch({
-            type: "GET_NINOS",
-            payload: ninos
+            type: "GET_AMULETOS",
+            payload: amuletos
         })
     };
 
-    const getNinoById = async(id) => {
+    const getAmuletosById = async(id) => {
         try {
             const response = await axiosClient.get(`/games/${id}`)
-            const ninoInfo = response.data.product
+            const amuletoInfo = response.data.product
 
             dispatch({
-                type:"GET_NINO",
-                payload: ninoInfo
+                type:"GET_AMULETO",
+                payload: amuletoInfo
             })
         } catch (error) {
             console.error(error)
@@ -57,10 +57,10 @@ const NinosProvider = ({ children }) => {
 
     return (
         <div>
-            <NinosContext.Provider value={{getNinos, getNinoById, products: ninosState.products, reduceStock}}>{children}</NinosContext.Provider>
+            <AmuletosContext.Provider value={{getAmuletos, getAmuletosById, products: amuletosState.products, reduceStock}}>{children}</AmuletosContext.Provider >
         </div>
     )
 
 }
 
-export default NinosProvider;
+export default AmuletoProvider;

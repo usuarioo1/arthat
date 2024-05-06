@@ -1,10 +1,10 @@
-import { NinosContext } from "./NinosContext";
+import { RunasConext } from "./RunasContext";
 import { useReducer } from "react";
-import ninoReducer from "./ninosReducer";
+import runasReducer from "./runasReducer";
 import React from 'react'
 import axiosClient from "@/config/axiosClient";
 
-const NinosProvider = ({ children }) => {
+const RunasProvider = ({ children }) => {
 
     const initialState = {
         products:[],
@@ -25,25 +25,25 @@ const NinosProvider = ({ children }) => {
         }]
     }
 
-    const [ninosState, dispatch] = useReducer(ninoReducer, initialState)
+    const [runasState, dispatch] = useReducer(runasReducer, initialState)
 
-    const getNinos = async () => {
+    const getRunas = async () => {
         const response = await axiosClient.get('games')
-        const ninos = response.data.info;
+        const runas = response.data.info;
         dispatch({
-            type: "GET_NINOS",
-            payload: ninos
+            type: "GET_RUNAS",
+            payload: runas
         })
     };
 
-    const getNinoById = async(id) => {
+    const getRunasById = async(id) => {
         try {
             const response = await axiosClient.get(`/games/${id}`)
-            const ninoInfo = response.data.product
+            const runaInfo = response.data.product
 
             dispatch({
-                type:"GET_NINO",
-                payload: ninoInfo
+                type:"GET_RUNA",
+                payload: runaInfo
             })
         } catch (error) {
             console.error(error)
@@ -57,10 +57,10 @@ const NinosProvider = ({ children }) => {
 
     return (
         <div>
-            <NinosContext.Provider value={{getNinos, getNinoById, products: ninosState.products, reduceStock}}>{children}</NinosContext.Provider>
+            <RunasConext.Provider value={{getRunas, getRunasById, products: runasState.products, reduceStock}}>{children}</RunasConext.Provider >
         </div>
     )
 
 }
 
-export default NinosProvider;
+export default RunasProvider;

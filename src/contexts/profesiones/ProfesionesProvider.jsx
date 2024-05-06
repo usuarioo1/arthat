@@ -1,10 +1,10 @@
-import { NinosContext } from "./NinosContext";
+import { ProfesionesContext } from "./ProfesionesContext";
 import { useReducer } from "react";
-import ninoReducer from "./ninosReducer";
+import profesionesReducer from "./profesionesReducer";
 import React from 'react'
 import axiosClient from "@/config/axiosClient";
 
-const NinosProvider = ({ children }) => {
+const ProfesionesProvider = ({ children }) => {
 
     const initialState = {
         products:[],
@@ -25,25 +25,25 @@ const NinosProvider = ({ children }) => {
         }]
     }
 
-    const [ninosState, dispatch] = useReducer(ninoReducer, initialState)
+    const [profesionesState, dispatch] = useReducer(profesionesReducer, initialState)
 
-    const getNinos = async () => {
+    const getProfesiones = async () => {
         const response = await axiosClient.get('games')
-        const ninos = response.data.info;
+        const profesiones = response.data.info;
         dispatch({
-            type: "GET_NINOS",
-            payload: ninos
+            type: "GET_PROFESIONES",
+            payload: profesiones
         })
     };
 
-    const getNinoById = async(id) => {
+    const getProfesionById = async(id) => {
         try {
             const response = await axiosClient.get(`/games/${id}`)
-            const ninoInfo = response.data.product
+            const profesionInfo = response.data.product
 
             dispatch({
-                type:"GET_NINO",
-                payload: ninoInfo
+                type:"GET_PROFESION",
+                payload: profesionInfo
             })
         } catch (error) {
             console.error(error)
@@ -57,10 +57,10 @@ const NinosProvider = ({ children }) => {
 
     return (
         <div>
-            <NinosContext.Provider value={{getNinos, getNinoById, products: ninosState.products, reduceStock}}>{children}</NinosContext.Provider>
+            <ProfesionesContext.Provider value={{getProfesiones, getProfesionById, products: profesionesState.products, reduceStock}}>{children}</ProfesionesContext.Provider>
         </div>
     )
 
 }
 
-export default NinosProvider;
+export default ProfesionesProvider;
