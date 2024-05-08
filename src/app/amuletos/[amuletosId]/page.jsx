@@ -2,13 +2,13 @@
 import React from 'react';
 
 export async function generateStaticParams() {
-    const res = await fetch('https://backend-gamelink.onrender.com/games');
+    const res = await fetch('http://localhost:8080/amuletos');
     const data = await res.json();
 
     if (Array.isArray(data.info)) {
         return data.info.map((producto) => ({
             params: {
-                ninosId: producto._id.toString(),
+                amuletosId: producto._id.toString(),
             },
         }));
     } else {
@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 
 
 async function getProductById(id) {
-    const res = await fetch(`https://backend-gamelink.onrender.com/games/${id}`);
+    const res = await fetch(`http://localhost:8080/amuletos/${id}`);
     const data = await res.json();
     return data.product; // Aquí accedemos directamente al objeto del producto
 }

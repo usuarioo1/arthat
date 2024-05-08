@@ -15,6 +15,7 @@ function AgregarProducto() {
   const [peso, setPeso] = useState('');
   const [color, setColor] = useState('');
   const [stock, setStock] = useState('');
+  const [img, setImg] = useState('');
 
   const handleCategoriaChange = (event) => {
     setCategoria(event.target.value);
@@ -37,7 +38,8 @@ function AgregarProducto() {
           diametro,
           peso,
           color,
-          stock
+          stock,
+          img
         })
       });
 
@@ -52,6 +54,7 @@ function AgregarProducto() {
       setPeso('');
       setColor('');
       setStock('');
+      setImg('')
 
       // Aquí puedes manejar la respuesta de la solicitud
     } catch (error) {
@@ -132,6 +135,12 @@ function AgregarProducto() {
           Stock
         </label>
         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="stock" type="number" placeholder="Stock del producto" value={stock} onChange={(event) => setStock(event.target.value)} />
+      </div>
+      <div className="mb-4">
+        <label className="block text-black text-sm font-bold mb-2" htmlFor="codigo">
+          Imagen
+        </label>
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="codigo" type="text" placeholder="Código del producto" value={img} onChange={(event) => setImg(event.target.value)} />
       </div>
     </div>
 

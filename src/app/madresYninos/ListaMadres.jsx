@@ -11,7 +11,7 @@ const ListaMadres = () => {
 
     useEffect(() => {
 
-        fetch('https://backend-gamelink.onrender.com/games')
+        fetch('http://localhost:8080/madres')
             .then(response => response.json())
             .then(data => setMadresList(data.info))
             .catch(error => console.error('no se puedieron obtener los datos', error))

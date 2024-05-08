@@ -7,7 +7,7 @@ const ListaAnillos = ({nombre, img, precio}) => {
 
     useEffect(() => {
         // Fetch data from the API when the component mounts
-        fetch("https://backend-gamelink.onrender.com/games")
+        fetch("http://localhost:8080/anillos")
             .then(response => response.json())
             .then(data => setAnillosList(data.info)) // Extract the list of jewelry from the API response
             .catch(error => console.error("Error fetching data:", error));
