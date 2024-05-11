@@ -1,24 +1,23 @@
-
 import React from 'react';
 
 export async function generateStaticParams() {
-    const res = await fetch('http://localhost:8080/amuletos');
+    const res = await fetch('https://backend-gamelink.onrender.com/games');
     const data = await res.json();
 
     if (Array.isArray(data.info)) {
         return data.info.map((producto) => ({
             params: {
-                amuletosId: producto._id.toString(),
+                ninosId: producto._id.toString(),
             },
         }));
     } else {
-        return []; // Retorna un array vacío si data.info no es un array
+        return []; // Retorna un array vacío si data.info no es un array   
     }
 }
 
 
 async function getProductById(id) {
-    const res = await fetch(`http://localhost:8080/amuletos/${id}`);
+    const res = await fetch(`https://backend-gamelink.onrender.com/games/${id}`);
     const data = await res.json();
     return data.product; // Aquí accedemos directamente al objeto del producto
 }
@@ -29,7 +28,7 @@ const page = async ({ params }) => {
     return (
         <div>
     {product && (
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 m-auto mt-32 mb-20">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 m-auto mt-24">
             <div className="w-full md:flex"> {/* Adjust the width and flex behavior based on screen size */}
                 <img className="h-full w-full object-cover md:w-1/4 md:h-auto" src={product.img} alt={product.nombre} /> {/* Adjust image size and flex behavior based on screen size */}
                 <div className="w-full md:w-3/4 p-4 md:pl-8 flex flex-col justify-start items-start"> {/* Centered content */}

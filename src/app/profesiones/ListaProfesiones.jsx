@@ -17,7 +17,7 @@ const ListaProfesiones = () => {
     <div className="flex flex-wrap justify-center mt-20">
       {profesiones.map((producto, index) => (
         <div key={index} className="w-1/3 sm:w-1/4 md:w-1/6 p-2">
-          <Link href={`/ninosEla/${producto._id}`}>
+          <Link href={`/profesiones/${producto._id}`}>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden">
               <div className="aspect-w-1 aspect-h-1">
                 <img className="object-cover" src={producto.img} alt="Imagen Producto" />
