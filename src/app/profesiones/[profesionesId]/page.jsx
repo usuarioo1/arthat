@@ -6,9 +6,9 @@ export async function generateStaticParams() {
     const data = await res.json();
 
     if (Array.isArray(data.info)) {
-        return data.info.map((producto) => ({
+        return data.info.map((profesion) => ({
             params: {
-                ninosId: producto._id.toString(),
+                profesiones: profesion._id.toString(),
             },
         }));
     } else {
@@ -17,14 +17,14 @@ export async function generateStaticParams() {
 }
 
 
-async function getProductById(id) {
+async function getProfesionById(id) {
     const res = await fetch(`http://localhost:8080/profesiones/${id}`);
     const data = await res.json();
-    return data.product; // Aquí accedemos directamente al objeto del producto
+    return data.profesionById; // Aquí accedemos directamente al objeto del producto
 }
 
 const page = async ({ params }) => {
-    const product = await getProductById(params.profesionesId);
+    const product = await getProfesionById(params.profesionesId);
 
     return (
         <div>

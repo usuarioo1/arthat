@@ -2,13 +2,13 @@
 import React from 'react';
 
 export async function generateStaticParams() {
-    const res = await fetch('https://backend-gamelink.onrender.com');
+    const res = await fetch('http://localhost:8080/ninos');
     const data = await res.json();
 
     if (Array.isArray(data.info)) {
-        return data.info.map((producto) => ({
+        return data.info.map((nino) => ({
             params: {
-                ninosId: producto._id.toString(),
+                ninosId: nino._id.toString(),
             },
         }));
     } else {
@@ -17,14 +17,14 @@ export async function generateStaticParams() {
 }
 
 
-async function getProductById(id) {
-    const res = await fetch(`https://backend-gamelink.onrender.com/${id}`);
+async function getNinoById(id) {
+    const res = await fetch(`http://localhost:8080/ninos/${id}`);
     const data = await res.json();
-    return data.product; // Accede a la propiedad correcta del objeto devuelto
+    return data.NinoById; // Accede a la propiedad correcta del objeto devuelto
 }
 
 const page = async ({ params }) => {
-    const product = await getProductById(params.ninosId);
+    const product = await getNinoById(params.ninosId);
 
     return (
         <div>

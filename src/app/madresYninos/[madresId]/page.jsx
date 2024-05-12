@@ -1,16 +1,13 @@
 import React from 'react';
 
 export async function generateStaticParams() {
-
-
-    
     const res = await fetch('http://localhost:8080/madres');
     const data = await res.json();
 
     if (Array.isArray(data.info)) {
-        return data.info.map((producto) => ({
+        return data.info.map((madre) => ({
             params: {
-                ninosId: producto._id.toString(),
+                ninosId: madre._id.toString(),
             },
         }));
     } else {
@@ -19,14 +16,14 @@ export async function generateStaticParams() {
 }
 
 
-async function getProductById(id) {
+async function getMadreById(id) {
     const res = await fetch(`http://localhost:8080/madres/${id}`);
     const data = await res.json();
-    return data.product; // Aquí accedemos directamente al objeto del producto
+    return data.madreById; // Aquí accedemos directamente al objeto del producto
 }
 
 const page = async ({ params }) => {
-    const product = await getProductById(params.madresId);
+    const product = await getMadreById(params.madresId);
 
     return (
         <div>

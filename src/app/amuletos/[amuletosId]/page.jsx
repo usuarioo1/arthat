@@ -1,13 +1,13 @@
 import React from 'react';
 
 export async function generateStaticParams() {
-    const res = await fetch('https://backend-gamelink.onrender.com/games');
+    const res = await fetch('http://localhost:8080/amuletos');
     const data = await res.json();
 
     if (Array.isArray(data.info)) {
-        return data.info.map((producto) => ({
+        return data.info.map((amuleto) => ({
             params: {
-                ninosId: producto._id.toString(),
+                amuletoId: amuleto._id.toString(),
             },
         }));
     } else {
@@ -16,19 +16,19 @@ export async function generateStaticParams() {
 }
 
 
-async function getProductById(id) {
-    const res = await fetch(`https://backend-gamelink.onrender.com/games/${id}`);
+async function getAmuletoById(id) {
+    const res = await fetch(`http://localhost:8080/amuletos/${id}`);
     const data = await res.json();
-    return data.product; // Aquí accedemos directamente al objeto del producto
+    return data.amuletoById; // Aquí accedemos directamente al objeto del producto
 }
 
 const page = async ({ params }) => {
-    const product = await getProductById(params.amuletosId);
+    const product = await getAmuletoById(params.amuletosId);
 
     return (
         <div>
     {product && (
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 m-auto mt-24">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 m-auto mt-32 mb-20">
             <div className="w-full md:flex"> {/* Adjust the width and flex behavior based on screen size */}
                 <img className="h-full w-full object-cover md:w-1/4 md:h-auto" src={product.img} alt={product.nombre} /> {/* Adjust image size and flex behavior based on screen size */}
                 <div className="w-full md:w-3/4 p-4 md:pl-8 flex flex-col justify-start items-start"> {/* Centered content */}
