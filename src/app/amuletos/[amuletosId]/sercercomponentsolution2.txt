@@ -1,0 +1,43 @@
+// notice/[id]/index.tsx
+import { useClient } from "@app/provider/apollo";
+import { formatDate } from 'src/util/date';
+import { useRouter } from 'next/router';
+import { useQuery, useState, useEffect } from 'react';
+
+export type Props = {
+  params: { id: number };
+};
+
+const NoticeItem = ({ params }: Props) => {
+  const { back } = useRouter();
+  const [notice, setNotice] = useState<NonNullable<A_QUERY_TYPE>>();
+  const id = Number(params.id);
+  const { data, error } = useQuery<A_QUERY_TYPE>(A_QUERY, {
+    variables: {
+      id,
+    },
+  });
+
+  useEffect(() => {
+    if (data) {
+      setNotice(data.getNotice);
+    }
+  }, [data]);
+
+  const movePrevPage = () => {
+    back();
+  };
+
+  return (
+    <div className="w-96 mx-auto">
+      <h3 className="text-xl font-bold">{notice?.title}</h3>
+      <div className="flex justify-between">
+        <p>{notice?.editor}</p>
+        <p>{formatDate(notice?.date)}</p>
+      </div>
+      <p>{notice?.description}</p>
+    </div>
+  );
+};
+
+export default NoticeItem;

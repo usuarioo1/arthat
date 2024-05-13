@@ -12,9 +12,9 @@ const ListaAmuletos = ({nombre, img, precio}) => {
         // Realizar la solicitud a la API al cargar el componente
         fetch("http://localhost:8080/amuletos")
             .then(response => response.json())
-            .then(data => setAmuletosList(data.info)) // Extraemos la lista de juegos de la respuesta de la API
+            .then(data => setAmuletosList(data.info))
             .catch(error => console.error("Error fetching data:", error));
-    }, []); // El array vacío como segundo argumento asegura que useEffect se ejecute solo una vez al montar el componente
+    }, []); 
 
 
     return (

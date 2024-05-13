@@ -1,0 +1,22 @@
+// notice/[id]/page.tsx
+
+import { client } from "@app/provider/apollo";
+import NoticeItem, { Props } from '..';
+
+export async function generateStaticParams() {
+  const { data } = await client.query<A_QUERY_TYPE>({
+    query: A_QUERY,
+    variables: {
+      offset: 1,
+      limit: 10,
+    },
+  });
+
+  return data?.getAllNotice.notices.map((notice) => ({
+    id: notice.id.toString(),
+  }));
+}
+
+export default function NoticeItemPage({ params }: Props) {
+  return <NoticeItem params={{ id: params.id }} />;
+}
