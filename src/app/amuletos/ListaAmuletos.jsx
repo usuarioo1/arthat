@@ -2,24 +2,35 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+const getData = async () => {
+    const res = await fetch("http://localhost:8080/amuletos");
 
-const ListaAmuletos = ({nombre, img, precio}) => {
+    if (!res.ok) {
+        throw new Error("¡Algo pasó!");
+    }
 
+    return res.json();
+};
 
-    const [amuletosList, setAmuletosList] = useState([]);
+const ListaAmuletos = () => {
+    const [amuletosFetch, setAmuletosFetch] = useState([]);
 
     useEffect(() => {
-        // Realizar la solicitud a la API al cargar el componente
-        fetch("http://localhost:8080/amuletos")
-            .then(response => response.json())
-            .then(data => setAmuletosList(data.info))
-            .catch(error => console.error("Error fetching data:", error));
-    }, []); 
+        const fetchAmuletos = async () => {
+            try {
+                const data = await getData();
+                setAmuletosFetch(data.info);
+            } catch (error) {
+                console.error("Error al obtener los datos:", error);
+            }
+        };
 
+        fetchAmuletos();
+    }, []);
 
     return (
         <div className="flex flex-wrap justify-center mt-20">
-            {amuletosList.map((producto, index) => (
+            {amuletosFetch.map((producto, index) => (
                 <div key={index} className="w-1/3 sm:w-1/4 md:w-1/6 p-2">
                     <Link href={`/amuletos/${producto._id}`}>
                         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -35,9 +46,7 @@ const ListaAmuletos = ({nombre, img, precio}) => {
                 </div>
             ))}
         </div>
-    )
+    );
+};
 
-
-}
-
-export default ListaAmuletos
+export default ListaAmuletos;

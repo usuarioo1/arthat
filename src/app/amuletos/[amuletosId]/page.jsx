@@ -1,14 +1,19 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { CartContext } from '@/contexts/CartContext';
 
 const Page = ({ params }) => {
+
+    const {amuletosId} = params;
     const { id } = params; // Obtener el parámetro dinámico de la URL
     const [product, setProduct] = useState(null);
+
+    const { addItem } = useContext(CartContext);
 
     // Obtener los detalles del producto con el ID especificado
     const fetchProductDetails = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/amuletos/${id}`);
+            const response = await fetch(`http://localhost:8080/amuletos/${amuletosId}`);
             console.log('Response status:', response.status);
             const data = await response.json();
             console.log('Data from API:', data);
@@ -38,6 +43,10 @@ const Page = ({ params }) => {
         );
     }
 
+    const handleAddToCart = () => {
+        addItem(product);
+    };
+
     return (
         <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 m-auto mt-24 mb-20">
             <div className="w-full md:flex">
@@ -48,7 +57,7 @@ const Page = ({ params }) => {
                     <hr className="border-gray-300 my-2 w-full" />
                     <div className="flex items-center mt-2">
                         <p className="text-gray-900 font-bold text-xl mr-4">Precio: ${product.precio}</p>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Agregar al carrito</button>
+                        <button  onClick={handleAddToCart} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Agregar al carrito</button>
                     </div>
                     <hr className="border-gray-300 my-2 w-full" />
                     <p className="text-gray-600 mt-2">{product.descripcion}</p>

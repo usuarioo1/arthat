@@ -1,38 +1,40 @@
-// import { createContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
-// //estado inicial de carrito de compras, el cual será un array vacio
-// const initialState = {
-//     cartItems: []
-// }
+export const CartContext = createContext();
 
-// // creacion del contexto
+const initialState = {
+    cartItems: [],
+}
 
-// export const CartContext = createContext(initialState)
+function reducer(state, action) {
+    switch (action.type) {
+        case 'ADD_ITEM':
+            return { ...state, cartItems: [...state.cartItems, action.item] };
 
-// // use reducer
+        case 'REMOVE_ITEM':
+            const newCartItems = state.cartItems.filter((item) => item.id !== action.id);
+            return { ...state, cartItems: newCartItems };
 
-// const cartReducer = (state, action) => {
+        default:
 
-//     switch (action.type) {
-//         case 'ADD_TO_CART':
-//             return {
-//                 ...state,
-//                 cartItems: state.cartItems.filter(
-//                     (item) => item.id !== action.payload.id
-//                 ),
-//             }
+            return state;
+    }
+}
 
-//         default:
-//             return state;
-//     }
-// };
+export function CartContextProvider({ children }) {
+    const [state, dispatch] = useReducer(reducer, initialState);
 
-// export const CartProvider = ({children}) => {
-//     const [state, dispatch] = useReducer(cartReducer, initialState);
+    const addItem = (item) => {
+        dispatch({ type: 'ADD_ITEM', item });
+    };
 
-//     return (
-//         <CartContext.Provider value={{cartItems: state.cartItems, dispatch}}>
-//             {children}
-//         </CartContext.Provider>
-//     );
-// };
+    const removeItem = (id) => {
+        dispatch({ type: 'REMOVE_ITEM', id });
+    };
+
+    return (
+        <CartContext.Provider value={{ cartItems: state.cartItems, addItem, removeItem }}>
+            {children}
+        </CartContext.Provider>
+    );
+}
