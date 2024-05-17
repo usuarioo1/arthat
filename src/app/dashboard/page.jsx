@@ -43,6 +43,8 @@ function AgregarProducto() {
         })
       });
 
+      
+
       setCategoria('');
       setNombre('');
       setDescripcion('');
@@ -56,6 +58,9 @@ function AgregarProducto() {
       setStock('');
       setImg('')
 
+      alert('producto agregado con éxito')
+
+      
       // Aquí puedes manejar la respuesta de la solicitud
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
@@ -71,7 +76,7 @@ function AgregarProducto() {
     <div className="container mx-auto px-4">
 
       <div className="flex justify-center mb-4">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleSubmit}>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleSubmit} >
           Añadir Producto
         </button>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaUser } from "react-icons/fa";
+import Link from 'next/link';
+import BotonPanel from './BotonPanel';
 
 const Navbar = () => {
     return (
@@ -16,16 +17,15 @@ const Navbar = () => {
 
             </div>
             <div className="navbar-center">
-                <a href="#" className="">
+                <Link href={'/'} className="">
                     <img src="https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg" alt="ARTHAT LOGO" className="w-50 h-40" />
-                </a>
+                </Link>
             </div>
 
             <div className="navbar-end mr-10">
-                <div className="flex items-center hidden sm:flex"> {/* Oculto en pantallas pequeñas */}
-                    <FaUser />
-                    <p> Iniciar sesión/Registrarse</p>
-                </div>
+
+                <BotonPanel />
+                
 
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">

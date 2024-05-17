@@ -45,8 +45,8 @@ const Page = ({ params }) => {
 
     const handleAddToCart = () => {
         addItem(product);
-        console.log('Product added to cart:', product); // Console log to verify if the product was added to the cart
-        console.log('Cart contents:', /* Code to access and display cart contents */); // Console log to display the contents of the cart
+        console.log('Product added to cart:', product); 
+        console.log('Cart contents:')
     };
 
     return (
