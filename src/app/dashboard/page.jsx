@@ -76,12 +76,12 @@ function AgregarProducto() {
   return (
     <div className="container mx-auto px-4">
 
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-4 gap-2">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleSubmit} >
           Añadir Producto
-        </button>
+        </button   >
         <Link href={'/editorproductpage'}>
-          <button>
+          <button className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
           Editar Productos
           </button>
         </Link>

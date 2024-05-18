@@ -8,7 +8,7 @@ const ProductEditor = ({ onUpdate }) => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
-    const categories = ['amuletos', 'ninos', 'profesiones', 'madres', 'anillos', 'runas']; // Tus categorías
+    const categories = ['amuletos', 'ninos', 'profesiones', 'madres', 'anillos', 'runas']; // Tus categorías de los enpints
 
     const handleFetchProduct = async () => {
         setLoading(true);
