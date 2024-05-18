@@ -2,13 +2,13 @@
 import { useState } from 'react';
 
 const ProductEditor = ({ onUpdate }) => {
-    const [productId, setProductId] = useState('');
+    const [productCode, setProductCode] = useState('');
     const [productData, setProductData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
-    const categories = ['amuletos', 'ninos', 'profesiones', 'madres', 'anillos', 'runas']; // Your categories
+    const categories = ['amuletos', 'ninos', 'profesiones', 'madres', 'anillos', 'runas']; // Tus categorías
 
     const handleFetchProduct = async () => {
         setLoading(true);
@@ -19,21 +19,25 @@ const ProductEditor = ({ onUpdate }) => {
 
         for (const category of categories) {
             try {
-                const response = await fetch(`http://localhost:8080/${category}/${productId}`);
+                const response = await fetch(`http://localhost:8080/${category}`);
                 if (response.ok) {
-                    foundProduct = await response.json();
-                    productCategory = category;
-                    break;
+                    const data = await response.json();
+                    const product = data.info.find(item => item.codigo === productCode);
+                    if (product) {
+                        foundProduct = product;
+                        productCategory = category;
+                        break;
+                    }
                 }
             } catch (err) {
-                // Handle error silently and continue to next category
+                // Maneja el error en silencio y continúa con la siguiente categoría
             }
         }
 
         if (foundProduct) {
             setProductData({ ...foundProduct, category: productCategory });
         } else {
-            setError('Product not found');
+            setError('Producto no encontrado');
             setProductData(null);
         }
 
@@ -56,7 +60,7 @@ const ProductEditor = ({ onUpdate }) => {
         setSuccess(null);
 
         try {
-            const response = await fetch(`http://localhost:8080/${productData.category}/${productId}`, {
+            const response = await fetch(`http://localhost:8080/${productData.category}/${productData._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,23 +86,23 @@ const ProductEditor = ({ onUpdate }) => {
                 <input
                     className="flex-1 border border-gray-300 rounded-md p-2 mr-2"
                     type="text"
-                    placeholder="Introduce el Id"
-                    value={productId}
-                    onChange={(e) => setProductId(e.target.value)}
+                    placeholder="Introduce el Código"
+                    value={productCode}
+                    onChange={(e) => setProductCode(e.target.value)}
                 />
                 <button
                     className={`p-2 rounded-md ${loading ? 'bg-gray-300' : 'bg-blue-500 text-white'}`}
                     onClick={handleFetchProduct}
                     disabled={loading}
                 >
-                    {loading ? 'Loading...' : 'Fetch Product'}
+                    {loading ? 'Cargando...' : 'Solicitar Producto'}
                 </button>
             </div>
             {error && <div className="text-red-500 mb-4">{error}</div>}
             {success && <div className="text-green-500 mb-4">{success}</div>}
             {productData && (
                 <div>
-                    <h3 className="text-xl font-semibold mb-2">Product Details</h3>
+                    <h3 className="text-xl font-semibold mb-2">Detalles del Producto</h3>
                     <form className="space-y-4">
                         {[
                             { label: 'Nombre', name: 'nombre', type: 'text' },
@@ -129,7 +133,7 @@ const ProductEditor = ({ onUpdate }) => {
                             onClick={handleSave}
                             disabled={loading}
                         >
-                            {loading ? 'Saving...' : 'Save Changes'}
+                            {loading ? 'Guardando...' : 'Guardar Cambios'}
                         </button>
                     </form>
                 </div>
