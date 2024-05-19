@@ -7,7 +7,7 @@ function viewCart() {
 
     const { cartItems, removeItem } = useContext(CartContext);
 
-    const totalPrice = cartItems.reduce((total, item) => total + item.precio, 0);
+    const precioTotal = cartItems.reduce((total, item) => total + (item.precio * item.quantity), 0);
     const handleRemoveItem = (id) => {
         removeItem(id);
     };
@@ -17,6 +17,9 @@ function viewCart() {
 
             <div>
                 <h2>Carrito de compras</h2>
+                <br/>
+                <br/>
+                <br/>
                 <table style={{ borderCollapse: 'collapse', width: '100%' }}>
                     <thead>
                     <tr>
@@ -38,7 +41,17 @@ function viewCart() {
                     </tbody>
                 </table>
             </div>
-
+            <br/>
+            <br/>
+            <br/>
+            <h2>Total : {precioTotal}</h2>
+            <br/>
+            <br/>
+            <br/>
+            <button className="btn text-white hover:text-red-600 ">Pagar</button>
+            <br/>
+            <br/>
+            <br/>
         </div>
 
     );
