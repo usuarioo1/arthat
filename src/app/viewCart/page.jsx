@@ -14,19 +14,29 @@ function viewCart() {
 
     return (
         <div className="container mx-auto px-4">
-            <div className="w-64 mx-2 mb-4 bg-white shadow-lg rounded-lg overflow-hidden">
-             </div>
+
             <div>
                 <h2>Carrito de compras</h2>
-                <ul>
-                    {cartItems.map(item => (
-                        <li key={item._id}>
-                            {item.nombre} - ${item.precio} - {item.quantity}
-                            <button onClick={() => handleRemoveItem(item._id)}>Eliminar</button>
-                        </li>
+                <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+                    <thead>
+                    <tr>
+                        <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Nombre producto</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Precio</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Cantidad</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Accion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {cartItems.map((row, index) => (
+                        <tr key={index} style={{ background: index % 2 === 0 ? '#f2f2f2' : 'transparent' }}>
+                            <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.nombre}</td>
+                            <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.precio}</td>
+                            <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.quantity}</td>
+                            <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}> <button onClick={() => handleRemoveItem(row._id)}>Eliminar</button></td>
+                        </tr>
                     ))}
-                </ul>
-
+                    </tbody>
+                </table>
             </div>
 
         </div>
