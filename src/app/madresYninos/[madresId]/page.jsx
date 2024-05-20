@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
-
+import { apiUrlMadres } from "@/utils/api";
 const page = ({ params }) => {
 
     const {madresId} = params;
@@ -13,7 +13,7 @@ const page = ({ params }) => {
     // Obtener los detalles del producto con el ID especificado
     const fetchProductDetails = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/madres/${madresId}`);
+            const response = await fetch(`${apiUrlMadres}/${madresId}`);
             console.log('Response status:', response.status);
             const data = await response.json();
             console.log('Data from API:', data);
