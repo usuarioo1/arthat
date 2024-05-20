@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { useState } from 'react';
+import { apiUrlBase } from '@/utils/api';
 
 function AgregarProducto() {
 
@@ -24,7 +25,7 @@ function AgregarProducto() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/${categoria}`, {
+      const response = await fetch(`${apiUrlBase}/${categoria}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
