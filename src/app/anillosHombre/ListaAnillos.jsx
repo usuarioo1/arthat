@@ -1,13 +1,14 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Link from "next/link";
+import { apiUrlAnillos } from '@/utils/api';
 
 const ListaAnillos = ({nombre, img, precio}) => {
     const [anillosList, setAnillosList] = useState([]);
 
     useEffect(() => {
         // Fetch data from the API when the component mounts
-        fetch("http://localhost:8080/anillos")
+        fetch(apiUrlAnillos)
             .then(response => response.json())
             .then(data => setAnillosList(data.info)) // Extract the list of jewelry from the API response
             .catch(error => console.error("Error fetching data:", error));
