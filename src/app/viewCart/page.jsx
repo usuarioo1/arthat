@@ -5,7 +5,7 @@ import {CartContext} from "@/contexts/CartContext";
 
 function viewCart() {
 
-    const {cartItems, removeItem} = useContext(CartContext);
+    const {cartItems, removeItem, addItem} = useContext(CartContext);
 
     const precioTotal = cartItems.reduce((total, item) => total + (item.precio * item.quantity), 0);
     const handleRemoveItem = (id) => {
@@ -31,7 +31,9 @@ function viewCart() {
         }
 
     }
-
+    const handleToItem = (producto) => {
+        addItem(producto)
+    }
 
     return (
         <div className="container mx-auto px-4">
@@ -47,7 +49,13 @@ function viewCart() {
                         <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Nombre producto</th>
                         <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Precio</th>
                         <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Cantidad</th>
-                        <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Accion</th>
+                        <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Alto:cm</th>
+                        <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Ancho:cm</th>
+                        <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Diametro:cm</th>
+                        <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Peso:gr</th>
+                        <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Color</th>
+                        <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Disminuir</th>
+                        <th style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>Aumentar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,13 +63,22 @@ function viewCart() {
                         <tr key={index} style={{background: index % 2 === 0 ? '#f2f2f2' : 'transparent'}}>
                             <td style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>{row.nombre}</td>
                             <td style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>{row.precio}</td>
-                            <td style={{
+                            <td style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>{row.quantity}</td>
+                            <td style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>{row.alto}</td>
+                            <td style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>{row.ancho}</td>
+                            <td style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>{row.diametro}</td>
+                            <td style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>{row.peso}</td>
+                            <td style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>{row.color}</td>
+                            {/* <td style={{
                                 border: '1px solid #ddd',
                                 padding: '8px',
                                 textAlign: 'left'
-                            }}>{row.quantity}</td>
+                            }}>{row.quantity}</td> */}
                             <td style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>
                                 <button onClick={() => handleRemoveItem(row._id)}>Eliminar</button>
+                            </td>
+                            <td style={{border: '1px solid #ddd', padding: '8px', textAlign: 'left'}}>
+                                <button onClick={() => handleToItem(row)}>Aumentar</button>
                             </td>
                         </tr>
                     ))}
