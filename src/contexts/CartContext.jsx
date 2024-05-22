@@ -25,6 +25,23 @@ function reducer(state, action) {
                 return {...state, cartItems: [...state.cartItems, {...action.item, quantity: 1}]};
             }
 
+        case 'ADD_TO_ITEM':
+            const existingItem = state.cartItems.find(item => item._id === action.id);
+            if (existingItem.quantity > 1) {
+                // Si la cantidad del producto es mayor que 1, aumentamos la cantidad en 1
+                const updatedCartItems = state.cartItems.map(item =>
+                    item._id === action.id ? {...item, quantity: item.quantity + 1} : item
+                );
+                return {...state, cartItems: updatedCartItems};
+            } else {
+                // Si la cantidad del producto es 1, lo eliminamos del carrito
+                const newCartItems = state.cartItems.filter(item => item._id !== action.id);
+                return {...state, cartItems: newCartItems};
+            }
+    
+
+
+
 
         case 'REMOVE_ITEM':
             const existingItem = state.cartItems.find(item => item._id === action.id);
@@ -50,6 +67,10 @@ export function CartContextProvider({children}) {
 
     const addItem = (item) => {
         dispatch({type: 'ADD_ITEM', item});
+    };
+
+    const addToItem = (item) => {
+        dispatch({type: 'ADD_TO_ITEM', item});
     };
 
     const removeItem = (id) => {
