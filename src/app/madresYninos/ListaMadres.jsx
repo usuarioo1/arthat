@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { apiUrlMadres } from '@/utils/api'
 
 
 import React from 'react'
@@ -11,7 +12,7 @@ const ListaMadres = () => {
 
     useEffect(() => {
 
-        fetch('http://localhost:8080/madres')
+        fetch(apiUrlMadres)
             .then(response => response.json())
             .then(data => setMadresList(data.info))
             .catch(error => console.error('no se puedieron obtener los datos', error))

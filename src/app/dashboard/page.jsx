@@ -1,6 +1,8 @@
 'use client'
+import Link from 'next/link';
 import React from 'react';
 import { useState } from 'react';
+import { apiUrlBase } from '@/utils/api';
 
 function AgregarProducto() {
 
@@ -23,7 +25,7 @@ function AgregarProducto() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/${categoria}`, {
+      const response = await fetch(`${apiUrlBase}/${categoria}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -43,7 +45,7 @@ function AgregarProducto() {
         })
       });
 
-      
+
 
       setCategoria('');
       setNombre('');
@@ -60,7 +62,7 @@ function AgregarProducto() {
 
       alert('producto agregado con éxito')
 
-      
+
       // Aquí puedes manejar la respuesta de la solicitud
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
@@ -75,10 +77,15 @@ function AgregarProducto() {
   return (
     <div className="container mx-auto px-4">
 
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-4 gap-2">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleSubmit} >
           Añadir Producto
-        </button>
+        </button   >
+        <Link href={'/editorproductpage'}>
+          <button className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Editar Productos
+          </button>
+        </Link>
       </div>
       <h1 className="text-4xl font-bold mb-4">Agregar Producto</h1>
       <div className="mb-4">
@@ -120,7 +127,7 @@ function AgregarProducto() {
         <label className="block text-black text-sm font-bold mb-2" htmlFor="precio">
           Precio
         </label>
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="precio" type="number" placeholder="Precio del producto" value={precio} onChange={(event) => setPrecio(event.target.value)}  />
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="precio" type="number" placeholder="Precio del producto" value={precio} onChange={(event) => setPrecio(event.target.value)} />
       </div>
       <div className="mb-4">
         <label className="block text-black text-sm font-bold mb-2" htmlFor="codigo">
@@ -132,7 +139,7 @@ function AgregarProducto() {
         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="alto" type="number" placeholder="Alto" value={alto} onChange={(event) => setAlto(event.target.value)} />
         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="ancho" type="number" placeholder="Ancho" value={ancho} onChange={(event) => setAncho(event.target.value)} />
         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="diametro" type="number" placeholder="Diámetro" value={diametro} onChange={(event) => setDiametro(event.target.value)} />
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="peso" type="number" placeholder="Peso" value={peso} onChange={(event) => setPeso(event.target.value) } />
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="peso" type="number" placeholder="Peso" value={peso} onChange={(event) => setPeso(event.target.value)} />
         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="color" type="text" placeholder="Color" value={color} onChange={(event) => setColor(event.target.value)} />
       </div>
       <div className="mb-4">

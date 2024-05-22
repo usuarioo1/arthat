@@ -1,13 +1,13 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
-
+import { apiUrlProfesiones } from '@/utils/api';
 const ListaProfesiones = () => {
 
   const [profesiones, setProfesiones] = useState([]);
   useEffect(() => {
     // Realizar la solicitud a la API al cargar el componente
-    fetch("http://localhost:8080/profesiones")
+    fetch(apiUrlProfesiones)
       .then(response => response.json())
       .then(data => setProfesiones(data.info)) // Extraemos la lista de juegos de la respuesta de la API
       .catch(error => console.error("Error fetching data:", error));

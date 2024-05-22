@@ -1,13 +1,14 @@
 'use client'
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { apiUrlNinos } from "@/utils/api";
 
 const ListaNinos = ({nombre, img, precio}) => {
   const [ninosList, setNinosList] = useState([]);
 
   useEffect(() => {
     // Realizar la solicitud a la API al cargar el componente
-    fetch("http://localhost:8080/ninos")
+    fetch(apiUrlNinos)
       .then(response => response.json())
       .then(data => setNinosList(data.info)) // Extraemos la lista de juegos de la respuesta de la API
       .catch(error => console.error("Error fetching data:", error));

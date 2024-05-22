@@ -1,8 +1,8 @@
 'use client'
 import Link from 'next/link';
 import BotonPanel from './BotonPanel';
-import React, {useContext} from 'react';
-import {CartContext} from "@/contexts/CartContext";
+import React, { useContext } from 'react';
+import { CartContext } from "@/contexts/CartContext";
 
 const Navbar = (props) => {
     const { cartItems } = useContext(CartContext);
@@ -15,27 +15,40 @@ const Navbar = (props) => {
         <div className="navbar bg-white">
 
             <div className="navbar-start mr-10">
-            <div className='pl-20'>
-                <div className="hidden sm:block"> {/* Oculto en pantallas pequeñas */}
-                    <label className="input input-bordered flex items-center gap-2 bg-white">
-                        <input type="text" className="grow" placeholder="búsqueda de productos" />
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
-                    </label>
-                </div>
-                </div>
+                <div className='pl-20'>
+                    <div className="hidden sm:block">
+                        <label className="input input-bordered flex items-center gap-2 bg-white">
+                            <input
+                                type="text"
+                                className="grow"
+                                placeholder="búsqueda de productos"
+                                
+                                
+                            />
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70">
+                                <path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" />
+                            </svg>
+                        </label>
+{/*                         
+                        <ul className="mt-2 bg-white border border-gray-200 max-h-60 overflow-auto">
 
+                            <li className="p-2 hover:bg-gray-100 flex items-center">
+                                <img className="w-10 h-10 object-cover mr-2" />
+                                <span></span>
+                            </li>
+                            
+                        </ul> */}
+
+                    </div>
+                </div>
             </div>
             <div className="navbar-center">
-                <Link href={'/'} className="">
+                <Link href={'/'}>
                     <img src="https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg" alt="ARTHAT LOGO" className="w-50 h-40" />
                 </Link>
             </div>
-
             <div className="navbar-end mr-10">
-
                 <BotonPanel />
-                
-
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                         <div className="indicator">
@@ -48,16 +61,16 @@ const Navbar = (props) => {
                             <span className="font-bold text-lg">{cantidadTotal} Items</span>
                             <span className="text-info">Subtotal: ${precioTotal}</span>
                             <Link href='/viewCart'>
-                            <div className="card-actions">
-                                <button className="btn btn-primary btn-block">View cart</button>
-                            </div>
+                                <div className="card-actions">
+                                    <button className="btn btn-primary btn-block">View cart</button>
+                                </div>
                             </Link>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Navbar;

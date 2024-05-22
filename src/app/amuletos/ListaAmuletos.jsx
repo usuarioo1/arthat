@@ -1,9 +1,10 @@
 'use client'
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { apiUrlAmuletos } from "@/utils/api";
 
 const getData = async () => {
-    const res = await fetch("http://localhost:8080/amuletos");
+    const res = await fetch(apiUrlAmuletos);
 
     if (!res.ok) {
         throw new Error("¡Algo pasó!");
