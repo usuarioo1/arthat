@@ -5,37 +5,69 @@ import { Document, Text, Page, PDFDownloadLink, StyleSheet, View, Image } from "
 
 function ViewCart() {
 
-
     const styles = StyleSheet.create({
         page: {
-            flexDirection: 'row',
+            padding: 30,
             backgroundColor: '#E4E4E4'
         },
-        section: {
-            margin: 10,
-            padding: 10,
-            flexGrow: 1
+        table: {
+            display: "table",
+            width: "auto",
+            borderStyle: "solid",
+            borderWidth: 1,
+            borderColor: '#bfbfbf',
+        },
+        tableRow: {
+            flexDirection: "row",
+        },
+        tableCol: {
+            width: "12.5%",
+            borderStyle: "solid",
+            borderWidth: 1,
+            borderColor: '#bfbfbf',
+            padding: 5,
+        },
+        tableCell: {
+            margin: "auto",
+            marginTop: 5,
+            fontSize: 10,
+        },
+        header: {
+            backgroundColor: '#f2f2f2',
         }
     });
 
-    const Pdf = () => {
+    const Pdf = ({ cartItems }) => {
         return (
             <Document>
-                {cartItems.map((item, index) => (
-                    <Page key={index} size='A4' style={styles.page} wrap={false}>
-                        <View style={{textAlign: 'center', margin:30, padding:10}}  >
-                            <Image  style={{align :'center', width:25, height:25}} src='https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg' />
-                            <Text> nombre: {item.nombre}</Text>
-                            <Text> cantidad: {item.quantity}</Text>
-                            <Text> alto:{item.alto}</Text>
-                            <Text> ancho: {item.ancho}</Text>
-                            <Text> diametro{item.diametro}</Text>
-                            <Text> peso: {item.peso}</Text>  {/* Corrección aquí */}
-                            <Text> color:{item.color}</Text>
-                            <Text> color:{item.precio}</Text>
+                <Page size='A4' style={styles.page} wrap={false}>
+                    <View style={styles.table}>
+                        {/* Table Header */}
+                        <View style={[styles.tableRow, styles.header]}>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Nombre producto</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Precio</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Cantidad</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Alto (cm)</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Ancho (cm)</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Diámetro (cm)</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Peso (gr)</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Color</Text></View>
                         </View>
-                    </Page>
-                ))}
+                        {/* Table Body */}
+                        {cartItems.map((item, index) => (
+                            <View style={styles.tableRow} key={index}>
+                                <View style={styles.tableCol}><Text style={styles.tableCell}>{item.nombre}</Text></View>
+                                <View style={styles.tableCol}><Text style={styles.tableCell}>{item.precio}</Text></View>
+                                <View style={styles.tableCol}><Text style={styles.tableCell}>{item.quantity}</Text></View>
+                                <View style={styles.tableCol}><Text style={styles.tableCell}>{item.alto}</Text></View>
+                                <View style={styles.tableCol}><Text style={styles.tableCell}>{item.ancho}</Text></View>
+                                <View style={styles.tableCol}><Text style={styles.tableCell}>{item.diametro}</Text></View>
+                                <View style={styles.tableCol}><Text style={styles.tableCell}>{item.peso}</Text></View>
+                                <View style={styles.tableCol}><Text style={styles.tableCell}>{item.color}</Text></View>
+                            </View>
+                        ))}
+                    </View>
+                </Page>
             </Document>
         );
     }
@@ -73,67 +105,76 @@ function ViewCart() {
         <div>
             <div className="container mx-auto px-4">
                 <div>
-                    <h2>Carrito de compras</h2>
+                    <h2 className="text-2xl font-semibold mb-4">Carrito de compras</h2>
                     <br />
-                    <br />
-                    <br />
-                    <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+                    <table className="min-w-full border-collapse">
                         <thead>
                             <tr>
-                                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Nombre producto</th>
-                                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Precio</th>
-                                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Cantidad</th>
-                                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Alto:cm</th>
-                                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Ancho:cm</th>
-                                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Diametro:cm</th>
-                                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Peso:gr</th>
-                                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Color</th>
-                                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Disminuir</th>
-                                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Aumentar</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Nombre producto</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Precio</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Cantidad</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Alto:cm</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Ancho:cm</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Diámetro:cm</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Peso:gr</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Color</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Disminuir</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Aumentar</th>
                             </tr>
                         </thead>
                         <tbody>
                             {cartItems.map((row, index) => (
-                                <tr key={index} style={{ background: index % 2 === 0 ? '#f2f2f2' : 'transparent' }}>
-                                    <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.nombre}</td>
-                                    <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.precio}</td>
-                                    <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.quantity}</td>
-                                    <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.alto}</td>
-                                    <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.ancho}</td>
-                                    <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.diametro}</td>
-                                    <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.peso}</td>
-                                    <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{row.color}</td>
-                                    <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>
-                                        <button onClick={() => handleRemoveItem(row._id)}>Eliminar</button>
+                                <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
+                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.nombre}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.precio}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.quantity}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.alto}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.ancho}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.diametro}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.peso}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.color}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-left">
+                                        <button
+                                            className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
+                                            onClick={() => handleRemoveItem(row._id)}
+                                        >
+                                            Eliminar
+                                        </button>
                                     </td>
-                                    <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>
-                                        <button onClick={() => handleToItem(row)}>Aumentar</button>
+                                    <td className="border border-gray-300 px-4 py-2 text-left">
+                                        <button
+                                            className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700"
+                                            onClick={() => handleToItem(row)}
+                                        >
+                                            Aumentar
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+                    <br />
+                    <h2 className="text-xl font-semibold">Total: {precioTotal}</h2>
+                    <br />
+                    <button className="mt-4 bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-700" onClick={guardarCarrito}>
+                        Pagar
+                    </button>
+                    <br />
+                    <br />
+                    {typeof window !== 'undefined' && (
+                        <PDFDownloadLink document={<Pdf cartItems={cartItems} />} fileName='cotizacion'>
+                            {({ loading }) => loading ? (
+                                <button className="bg-gray-500 text-white px-6 py-2 rounded cursor-not-allowed">
+                                    Generando cotización
+                                </button>
+                            ) : (
+                                <button className="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-700">
+                                    Descargar
+                                </button>
+                            )}
+                        </PDFDownloadLink>
+                    )}
                 </div>
-                <br />
-                <br />
-                <br />
-                <h2>Total : {precioTotal}</h2>
-                <br />
-                <br />
-                <br />
-                <button className="btn text-white hover:text-red-600" onClick={guardarCarrito}>Pagar</button>
-                <br />
-                <br />
-                <br />
-                {typeof window !== 'undefined' && (
-                    <PDFDownloadLink document={<Pdf />} fileName='cotizacion'>
-                        {({ loading }) => loading ? (
-                            <button>Generando cotización</button>
-                        ) : (
-                            <button>Descargar</button>
-                        )}
-                    </PDFDownloadLink>
-                )}
             </div>
         </div>
     );
