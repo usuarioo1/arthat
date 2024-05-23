@@ -7,8 +7,10 @@ function ViewCart() {
 
     const styles = StyleSheet.create({
         page: {
+            flexDirection: 'column',
+            backgroundColor: '#E4E4E4',
             padding: 30,
-            backgroundColor: '#E4E4E4'
+            height: '100%',
         },
         table: {
             display: "table",
@@ -16,6 +18,7 @@ function ViewCart() {
             borderStyle: "solid",
             borderWidth: 1,
             borderColor: '#bfbfbf',
+            margin: "0 auto",
         },
         tableRow: {
             flexDirection: "row",
@@ -40,7 +43,11 @@ function ViewCart() {
     const Pdf = ({ cartItems }) => {
         return (
             <Document>
-                <Page size='A4' style={styles.page} wrap={false}>
+                <Page size='A4' style={styles.page}>
+                    <Image 
+                        style={{ alignSelf: 'center', width: 50, height: 50, marginBottom: 20 }} 
+                        src='https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg' 
+                    />
                     <View style={styles.table}>
                         {/* Table Header */}
                         <View style={[styles.tableRow, styles.header]}>
