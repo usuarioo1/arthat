@@ -2,13 +2,15 @@
 import React, { useContext } from 'react';
 import { CartContext } from "@/contexts/CartContext";
 import { Document, Text, Page, PDFDownloadLink, StyleSheet, View, Image } from "@react-pdf/renderer";
+import { apiUrlCart } from '@/utils/api';
+import { IoDocumentOutline } from "react-icons/io5";
 
 function ViewCart() {
 
     const styles = StyleSheet.create({
         page: {
             flexDirection: 'column',
-            backgroundColor: '#E4E4E4',
+            backgroundColor: '#ffffff',
             padding: 30,
             height: '100%',
         },
@@ -36,16 +38,24 @@ function ViewCart() {
             fontSize: 10,
         },
         header: {
-            backgroundColor: '#f2f2f2',
-        }
+            backgroundColor: '#ffffff',
+        },
+        totalSection: {
+            marginTop: 20,
+            alignItems: 'center',
+        },
+        totalText: {
+            fontSize: 14,
+            fontWeight: 'bold',
+        },
     });
 
-    const Pdf = ({ cartItems }) => {
+    const Pdf = ({ cartItems, total }) => {
         return (
             <Document>
                 <Page size='A4' style={styles.page}>
                     <Image 
-                        style={{ alignSelf: 'center', width: 50, height: 50, marginBottom: 20 }} 
+                        style={{ alignSelf: 'center', width: 100, height: 75, marginBottom: 20 }} 
                         src='https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg' 
                     />
                     <View style={styles.table}>
@@ -74,6 +84,10 @@ function ViewCart() {
                             </View>
                         ))}
                     </View>
+                    {/* Total Section */}
+                    <View style={styles.totalSection}>
+                        <Text style={styles.totalText}>Total: $ {total}</Text>
+                    </View>
                 </Page>
             </Document>
         );
@@ -89,7 +103,7 @@ function ViewCart() {
 
     const guardarCarrito = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/cart`, {
+            const response = await fetch(`${apiUrlCart}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -120,10 +134,10 @@ function ViewCart() {
                                 <th className="border border-gray-300 px-4 py-2 text-left">Nombre producto</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Precio</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Cantidad</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Alto:cm</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Ancho:cm</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Diámetro:cm</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Peso:gr</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Alto (mm)</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Ancho (mm)</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Diámetro (mm)</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Peso (gr)</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Color</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Disminuir</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Aumentar</th>
@@ -161,26 +175,29 @@ function ViewCart() {
                         </tbody>
                     </table>
                     <br />
-                    <h2 className="text-xl font-semibold">Total: {precioTotal}</h2>
+                    <h2 className=" btn btn-outline text-xl font-semibold mb-4">Total: $ {precioTotal}</h2>
                     <br />
-                    <button className="mt-4 bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-700" onClick={guardarCarrito}>
+                    <div className='gap-5 '>
+                    <button className="btn btn-primary" onClick={guardarCarrito}>
                         Pagar
                     </button>
-                    <br />
-                    <br />
                     {typeof window !== 'undefined' && (
-                        <PDFDownloadLink document={<Pdf cartItems={cartItems} />} fileName='cotizacion'>
+                        <PDFDownloadLink document={<Pdf cartItems={cartItems} total={precioTotal} />} fileName='cotizacion'>
                             {({ loading }) => loading ? (
-                                <button className="bg-gray-500 text-white px-6 py-2 rounded cursor-not-allowed">
+                                <button className="btn btn-neutral ml-5">
                                     Generando cotización
                                 </button>
                             ) : (
-                                <button className="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-700">
-                                    Descargar
+                                <button className="btn btn-neutral ml-5">
+                                    Descargar Cotización <IoDocumentOutline />
                                 </button>
                             )}
                         </PDFDownloadLink>
                     )}
+                    </div>
+                    <br />
+                    <br />
+                    
                 </div>
             </div>
         </div>
