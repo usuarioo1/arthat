@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import { apiUrlAnillos } from "@/utils/api";
 
-const page = ({ params }) => {
+const AnillosPage = ({ params }) => {
 
     const { anillosId } = params;
     const { id } = params; // Obtener el parámetro dinámico de la URL
@@ -84,4 +84,4 @@ const page = ({ params }) => {
     );
 };
 
-export default page;
+export default AnillosPage;

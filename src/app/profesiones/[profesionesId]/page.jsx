@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import { apiUrlProfesiones } from "@/utils/api";
 
-const page = ({ params }) => {
+const ProfesionesPage = ({ params }) => {
 
     const {profesionesId} = params;
     const { id } = params; // Obtener el parámetro dinámico de la URL
@@ -81,4 +81,4 @@ const page = ({ params }) => {
 
 
 
-export default page;
+export default ProfesionesPage;

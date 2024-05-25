@@ -2,7 +2,8 @@
 import { useState, useEffect, useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import { apiUrlMadres } from "@/utils/api";
-const page = ({ params }) => {
+
+const MadresPage = ({ params }) => {
 
     const {madresId} = params;
     const { id } = params; // Obtener el parámetro dinámico de la URL
@@ -82,4 +83,4 @@ const page = ({ params }) => {
 
 
 
-export default page;
+export default MadresPage;

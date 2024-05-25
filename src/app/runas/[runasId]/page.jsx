@@ -4,7 +4,7 @@ import { CartContext } from "@/contexts/CartContext";
 import { apiUrlRunas } from "@/utils/api";
 
 
-const page = ({ params }) => {
+const RunasPage = ({ params }) => {
 
     const {runasId} = params;
     const { id } = params; // Obtener el parámetro dinámico de la URL
@@ -81,4 +81,4 @@ const page = ({ params }) => {
 
 
 
-export default page;
+export default RunasPage;

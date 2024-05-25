@@ -4,7 +4,7 @@ import { CartContext } from "@/contexts/CartContext";
 import { apiUrlNinos } from "@/utils/api";
 
 
-const page = ({ params }) => {
+const NinosPage = ({ params }) => {
 
     const {ninosId} = params;
     const { id } = params; // Obtener el parámetro dinámico de la URL
@@ -83,4 +83,4 @@ const page = ({ params }) => {
 
 
 
-export default page;
+export default NinosPage;
