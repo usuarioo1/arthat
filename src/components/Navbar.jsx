@@ -29,9 +29,9 @@ const Navbar = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="navbar-center">
+            <div className="navbar-center flex justify-center sm:block">
                 <Link href={'/'}>
-                    <img src="https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg" alt="ARTHAT LOGO" className="w-50 h-40" />
+                    <img src="https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg" alt="ARTHAT LOGO" className="w-50 h-40 mx-auto sm: -ml-4" />
                 </Link>
             </div>
             <div className="navbar-end mr-10">
