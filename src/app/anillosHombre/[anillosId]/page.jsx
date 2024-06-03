@@ -2,6 +2,7 @@
 import { useState, useEffect, useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import { apiUrlAnillos } from "@/utils/api";
+import ListaAnillos from "../ListaAnillos";
 
 const AnillosPage = ({ params }) => {
 
@@ -58,6 +59,7 @@ const AnillosPage = ({ params }) => {
 
 
     return (
+        <div>
 
         <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 m-auto mt-32 mb-20">
             <div className="w-full md:flex">
@@ -68,7 +70,7 @@ const AnillosPage = ({ params }) => {
                     <hr className="border-gray-300 my-2 w-full" />
                     <div className="flex items-center mt-2">
                         <p className="text-gray-900 font-bold text-xl mr-4">Precio: ${product.precio}</p>
-                        <button onClick={handleAddToCart} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Agregar al carrito</button>
+                        <button onClick={handleAddToCart} className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded">Agregar al carrito</button>
                     </div>
                     <hr className="border-gray-300 my-2 w-full" />
                     <p className="text-gray-600 mt-2">{product.descripcion}</p>
@@ -79,6 +81,8 @@ const AnillosPage = ({ params }) => {
                     </p>
                 </div>
             </div>
+        </div>
+        <ListaAnillos />
         </div>
 
     );

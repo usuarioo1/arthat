@@ -2,6 +2,7 @@
 import { useState, useEffect, useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import { apiUrlMadres } from "@/utils/api";
+import ListaMadres from "../ListaMadres";
 
 const MadresPage = ({ params }) => {
 
@@ -54,17 +55,18 @@ const MadresPage = ({ params }) => {
 
     return (
 
+        <div>
 
         <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 m-auto mt-32 mb-20">
             <div className="w-full md:flex"> {/* Adjust the width and flex behavior based on screen size */}
                 <img className="h-full w-full object-cover md:w-1/4 md:h-auto" src={product.img} alt={product.nombre} /> {/* Adjust image size and flex behavior based on screen size */}
                 <div className="w-full md:w-3/4 p-4 md:pl-8 flex flex-col justify-start items-start"> {/* Centered content */}
                     <h2 className="text-gray-800 font-semibold text-3xl">{product.nombre}</h2>
-                    <p className="text-gray-600 mt-2">SKU: {product.sku}</p> {/* SKU */}
+                    <p className="text-gray-600 mt-2">Código: {product.sku}</p> {/* SKU */}
                     <hr className="border-gray-300 my-2 w-full" /> {/* Divider */}
                     <div className="flex items-center mt-2"> {/* Flex container for price and button */}
                         <p className="text-gray-900 font-bold text-xl mr-4">Precio: ${product.precio}</p> {/* Price */}
-                        <button onClick={handleAddToCart} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Agregar al carrito</button> {/* Add to cart button */}
+                        <button onClick={handleAddToCart} className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded">Agregar al carrito</button> {/* Add to cart button */}
                     </div>
                     <hr className="border-gray-300 my-2 w-full" /> {/* Divider */}
                     <p className="text-gray-600 mt-2">{product.descripcion}</p>
@@ -75,6 +77,11 @@ const MadresPage = ({ params }) => {
                     </p>
                 </div>
             </div>
+            
+        </div>
+
+        <ListaMadres />
+
         </div>
 
 
