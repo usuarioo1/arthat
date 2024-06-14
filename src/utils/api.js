@@ -6,3 +6,4 @@ export const apiUrlProfesiones = process.env.NEXT_PUBLIC_API_URL_PROFESIONES
 export const apiUrlRunas = process.env.NEXT_PUBLIC_API_URL_RUNAS
 export const apiUrlBase = process.env.NEXT_PUBLIC_API_URL_BASE
 export const apiUrlCart = process.env.NEXT_PUBLIC_API_URL_CART
+export const apiUrlBlog = process.env.NEXT_PUBLIC_API_URL_BLOG
