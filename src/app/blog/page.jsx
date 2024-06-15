@@ -1,12 +1,13 @@
 'use client'
+import { apiUrlBlog } from '@/utils/api';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-const page = () => {
+const Page = () => {
     const [blogList, setBlogList] = useState([]);
 
     useEffect(() => {
-        fetch('https://backendjwl.onrender.com/blogs')
+        fetch(apiUrlBlog)
             .then(response => response.json())
             .then(data => setBlogList(data.info))
             .catch(error => console.error('Error al hacer la solicitud', error));
@@ -35,4 +36,4 @@ const page = () => {
     );
 }
 
-export default page;
+export default Page;
