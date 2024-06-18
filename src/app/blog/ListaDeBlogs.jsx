@@ -20,12 +20,12 @@ const ListaDeBlogs = () => {
                 {blogList.slice(0, 3).map(blog => ( // Usamos slice para limitar a los 3 primeros
                     <Link href={`/blogs/${blog._id}`} key={blog._id}>
                         <div className='my-4 p-4 border border-gray-300 rounded-lg'>
-                            <h1 className='text-xl font-bold'>{blog.titulo}</h1>
+                            <h1 className='text-xl font-bold text-black'>{blog.titulo}</h1>
                             <div className='my-2'>
                                 <img src={blog.img} alt={blog.titulo} className='w-full h-auto' />
                             </div>
                             <div className='my-2'>
-                                <p>{blog.contenido}</p>
+                                <p className='text-black'>{blog.contenido}</p>
                             </div>
                         </div>
                     </Link>

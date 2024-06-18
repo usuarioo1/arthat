@@ -1,10 +1,10 @@
-import { Inter } from "next/font/google";
+import { Actor } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartContextProvider } from "@/contexts/CartContext";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Actor({ weight:'400', subsets: ["latin"] });
 
 export const metadata = {
   title: "Arthat",
