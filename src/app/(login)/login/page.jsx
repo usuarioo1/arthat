@@ -1,21 +1,35 @@
 'use client'
+
 import { useState } from 'react';
 import Link from 'next/link';
+import { signIn } from 'next-auth/react'; // Asegúrate de tener next-auth instalado
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Aquí podrías manejar la lógica de envío de formularios, como llamar a una API para autenticar al usuario
-        console.log({ email, password });
+        const res = await signIn('credentials', {
+            redirect: false,
+            email,
+            password
+        });
+        if (res.error) {
+            setError(res.error);
+        } else {
+            window.location.href = '/';
+            // Mostrar la alerta una vez que el inicio de sesión sea exitoso
+            alert('Inicio de sesión exitoso');
+        }
     };
 
     return (
         <div className="min-h-screen flex items-start justify-center bg-white pt-16">
             <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold text-center mb-8 text-black">Iniciar sesión</h2>
+                {error && <p className="text-red-500 text-center">{error}</p>}
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                         <label className="input input-bordered flex items-center gap-2">
@@ -67,3 +81,4 @@ export default function Login() {
         </div>
     );
 }
+
