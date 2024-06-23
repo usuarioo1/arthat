@@ -54,9 +54,9 @@ function ViewCart() {
         return (
             <Document>
                 <Page size='A4' style={styles.page}>
-                    <Image 
-                        style={{ alignSelf: 'center', width: 100, height: 75, marginBottom: 20 }} 
-                        src='https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg' 
+                    <Image
+                        style={{ alignSelf: 'center', width: 100, height: 75, marginBottom: 20 }}
+                        src='https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg'
                     />
                     <View style={styles.table}>
                         {/* Table Header */}
@@ -131,7 +131,8 @@ function ViewCart() {
                     <table className="min-w-full border-collapse">
                         <thead>
                             <tr>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Nombre producto</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Producto</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Producto</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Precio</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Cantidad</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Alto (mm)</th>
@@ -146,6 +147,7 @@ function ViewCart() {
                         <tbody>
                             {cartItems.map((row, index) => (
                                 <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
+                                    <td className="border border-gray-300 px-4 py-2 text-left"><img src={row.img} alt="" /></td>
                                     <td className="border border-gray-300 px-4 py-2 text-left">{row.nombre}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-left">{row.precio}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-left">{row.quantity}</td>
@@ -178,26 +180,26 @@ function ViewCart() {
                     <h2 className=" btn btn-outline text-xl font-semibold mb-4">Total: $ {precioTotal}</h2>
                     <br />
                     <div className='gap-5 '>
-                    <button className="btn btn-primary" onClick={guardarCarrito}>
-                        Pagar
-                    </button>
-                    {typeof window !== 'undefined' && (
-                        <PDFDownloadLink document={<Pdf cartItems={cartItems} total={precioTotal} />} fileName='cotizacion'>
-                            {({ loading }) => loading ? (
-                                <button className="btn btn-neutral ml-5">
-                                    Generando cotización
-                                </button>
-                            ) : (
-                                <button className="btn btn-neutral ml-5">
-                                    Descargar Cotización <IoDocumentOutline />
-                                </button>
-                            )}
-                        </PDFDownloadLink>
-                    )}
+                        <button className="btn btn-primary" onClick={guardarCarrito}>
+                            Pagar
+                        </button>
+                        {typeof window !== 'undefined' && (
+                            <PDFDownloadLink document={<Pdf cartItems={cartItems} total={precioTotal} />} fileName='cotizacion'>
+                                {({ loading }) => loading ? (
+                                    <button className="btn btn-neutral ml-5">
+                                        Generando cotización
+                                    </button>
+                                ) : (
+                                    <button className="btn btn-neutral ml-5">
+                                        Descargar Cotización <IoDocumentOutline />
+                                    </button>
+                                )}
+                            </PDFDownloadLink>
+                        )}
                     </div>
                     <br />
                     <br />
-                    
+
                 </div>
             </div>
         </div>

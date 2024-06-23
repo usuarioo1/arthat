@@ -49,13 +49,13 @@ const Navbar = (props) => {
                             <span className="badge badge-sm indicator-item">{cantidadTotal}</span>
                         </div>
                     </div>
-                    <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
+                    <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 shadow bg-slate-100">
                         <div className="card-body">
-                            <span className="font-bold text-lg">{cantidadTotal} Items</span>
-                            <span className="text-info">Subtotal: ${precioTotal}</span>
+                            <span className="font-bold text-lg text-black">{cantidadTotal} Items</span>
+                            <span className="text-black">Subtotal: ${precioTotal}</span>
                             <Link href='/viewCart'>
                                 <div className="card-actions">
-                                    <button className="btn btn-primary btn-block">Ir al carrito</button>
+                                    <button className="btn btn-block bg-yellow-500 text-black hover:bg-yellow-300">Ir al carrito</button>
                                 </div>
                             </Link>
                         </div>
