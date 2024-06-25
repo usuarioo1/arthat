@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
-import { signIn } from 'next-auth/react'; // Asegúrate de tener next-auth instalado
 
 export default function Login() {
-    const [email, setEmail] = useState('');
+    const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
@@ -13,17 +13,18 @@ export default function Login() {
         e.preventDefault();
         const res = await signIn('credentials', {
             redirect: false,
-            email,
+            mail,
             password
         });
+    
         if (res.error) {
             setError(res.error);
         } else {
             window.location.href = '/';
-            // Mostrar la alerta una vez que el inicio de sesión sea exitoso
             alert('Inicio de sesión exitoso');
         }
     };
+    
 
     return (
         <div className="min-h-screen flex items-start justify-center bg-white pt-16">
@@ -41,8 +42,8 @@ export default function Login() {
                                 type="text"
                                 className="grow"
                                 placeholder="Email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                value={mail}
+                                onChange={(e) => setMail(e.target.value)}
                             />
                         </label>
                     </div>
@@ -55,6 +56,7 @@ export default function Login() {
                             <input
                                 type="password"
                                 className="grow"
+                                placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
@@ -81,4 +83,3 @@ export default function Login() {
         </div>
     );
 }
-

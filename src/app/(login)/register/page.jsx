@@ -1,5 +1,7 @@
 'use client'
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { apiUrlRegister } from '@/utils/api';
 
 const Page = () => {
     const [name, setName] = useState('');
@@ -7,6 +9,7 @@ const Page = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
+    const router = useRouter(); // Inicializar useRouter
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,7 +23,7 @@ const Page = () => {
 
         try {
             // Realizar la solicitud POST
-            const response = await fetch('https://backendjwl.onrender.com/login', {
+            const response = await fetch(`${apiUrlRegister}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,6 +42,9 @@ const Page = () => {
             console.log('Respuesta del servidor:', result);
             setSuccess(true);
             setError(null);
+
+            // Redirigir a la página principal
+            router.push('/'); // Redirecciona a la página principal
         } catch (error) {
             console.error('Error al enviar el formulario:', error);
             setError(`Hubo un problema al enviar el formulario. Inténtalo nuevamente. Detalles: ${error.message}`);

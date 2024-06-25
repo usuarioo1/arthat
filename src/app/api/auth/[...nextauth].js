@@ -1,28 +1,34 @@
-import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
+// pages/api/auth/[...nextauth].js
+import NextAuth from 'next-auth';
+import Providers from 'next-auth/providers';
 
 export default NextAuth({
     providers: [
         Providers.Credentials({
             name: 'Credentials',
             credentials: {
-                email: { label: "Email", type: "text" },
+                mail: { label: "Email", type: "text" },
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-                // Aquí debes agregar la lógica para autenticar al usuario con tu backend
-                const res = await fetch("http://localhost:3000/api/auth/login", {
-                    method: 'POST',
-                    body: JSON.stringify(credentials),
-                    headers: { "Content-Type": "application/json" }
-                })
-                const user = await res.json()
+                try {
+                    // Realiza una solicitud al endpoint de autenticación en tu backend
+                    const response = await fetch('http://localhost:8080/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(credentials)
+                    });
 
-                // Si no se encuentra el usuario o la contraseña es incorrecta
-                if (res.ok && user) {
-                    return user
-                } else {
-                    return null
+                    if (response.ok) {
+                        const user = await response.json();
+                        return user; // Retorna el usuario si las credenciales son válidas
+                    } else {
+                        throw new Error('Invalid login credentials');
+                    }
+                } catch (error) {
+                    throw new Error('Error al autenticar al usuario');
                 }
             }
         })
@@ -31,5 +37,8 @@ export default NextAuth({
         signIn: '/login',
         signOut: '/logout',
         error: '/auth/error'
+    },
+    session: {
+        jwt: true,
     }
-})
+});
