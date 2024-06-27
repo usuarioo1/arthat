@@ -3,8 +3,9 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartContextProvider } from "@/contexts/CartContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 
-const inter = Actor({ weight:'400', subsets: ["latin"] });
+const inter = Actor({ weight: '400', subsets: ["latin"] });
 
 export const metadata = {
   title: "Arthat",
@@ -14,9 +15,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <CartContextProvider>
-      <body className={inter.className + " bg-white"}><Navbar />{children}<Footer /></body>
-      </CartContextProvider>
+      <AuthProvider>
+        <CartContextProvider>
+          <body className={inter.className + " bg-white"}><Navbar />{children}<Footer /></body>
+        </CartContextProvider>
+      </AuthProvider>
     </html>
   );
 }
