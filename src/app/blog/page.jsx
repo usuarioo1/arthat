@@ -15,7 +15,7 @@ const Page = () => {
 
     return (
         <div className='container justify-center mx-auto'>
-            <div className='text-start text-black text-2xl font-bold'>BLOG</div>
+            <div className='text-center text-black text-4xl font-bold mb-10 mt-20'>BLOG</div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {blogList.map(blog => (
                     <Link href={`/blog/${blog._id}`} key={blog._id}>

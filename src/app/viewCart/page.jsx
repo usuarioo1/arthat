@@ -126,28 +126,28 @@ function ViewCart() {
         <div>
             <div className="container mx-auto px-4">
                 <div>
-                    <h2 className="text-2xl font-semibold mb-4">Carrito de compras</h2>
+                    <h2 className="text-2xl font-semibold mb-4 text-black">Carrito de compras</h2>
                     <br />
                     <table className="min-w-full border-collapse">
                         <thead>
                             <tr>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Producto</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Producto</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Precio</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Cantidad</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Alto (mm)</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Ancho (mm)</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Diámetro (mm)</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Peso (gr)</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Color</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Disminuir</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Aumentar</th>
+                                <th className="border border-gray-300 px-4 py-2 w-24"></th>
+                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Producto</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Precio</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Cantidad</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Alto (mm)</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Ancho (mm)</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Diámetro (mm)</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left text-black ">Peso (gr)</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Color</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Disminuir</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Aumentar</th>
                             </tr>
                         </thead>
                         <tbody>
                             {cartItems.map((row, index) => (
                                 <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
-                                    <td className="border border-gray-300 px-4 py-2 text-left"><img src={row.img} alt="" /></td>
+                                    <td className="border border-gray-300 px-4 py-2 text-left"><img src={row.img} alt="" className='w-24' /></td>
                                     <td className="border border-gray-300 px-4 py-2 text-left">{row.nombre}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-left">{row.precio}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-left">{row.quantity}</td>

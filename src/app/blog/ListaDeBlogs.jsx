@@ -15,7 +15,7 @@ const ListaDeBlogs = () => {
 
     return (
         <div className='container'>
-            <Link href={'blog'}><div className='text-start text-black text-2xl font-bold'>BLOG</div></Link>
+            <Link href={'blog'}><div className='text-center text-black text-2xl font-bold'>BLOG</div></Link>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {blogList.slice(0, 3).map(blog => ( // Usamos slice para limitar a los 3 primeros
                     <Link href={`/blog/${blog._id}`} key={blog._id}>
