@@ -4,6 +4,7 @@ import { CartContext } from "@/contexts/CartContext";
 import { Document, Text, Page, PDFDownloadLink, StyleSheet, View, Image } from "@react-pdf/renderer";
 import { apiUrlCart } from '@/utils/api';
 import { IoDocumentOutline } from "react-icons/io5";
+import Link from 'next/link';
 
 function ViewCart() {
 
@@ -180,9 +181,14 @@ function ViewCart() {
                     <h2 className=" btn btn-outline text-xl font-semibold mb-4">Total: $ {precioTotal}</h2>
                     <br />
                     <div className='gap-5 '>
-                        <button className="btn btn-primary" onClick={guardarCarrito}>
-                            Pagar
-                        </button>
+                        <Link href={'/infoCostumer'}>
+                            <button className="btn btn-primary" onClick={guardarCarrito}>
+
+                                Continuar con el pago
+
+
+                            </button>
+                        </Link>
                         {typeof window !== 'undefined' && (
                             <PDFDownloadLink document={<Pdf cartItems={cartItems} total={precioTotal} />} fileName='cotizacion'>
                                 {({ loading }) => loading ? (
