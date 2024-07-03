@@ -90,6 +90,11 @@ function AgregarProducto() {
           Blog
         </button>
         </Link>
+        <Link href={'/banner'}>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Banner
+        </button>
+        </Link>
       </div>
       <h1 className="text-4xl font-bold mb-4">Agregar Producto</h1>
       <div className="mb-4">
