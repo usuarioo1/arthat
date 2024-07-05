@@ -8,3 +8,7 @@ export const apiUrlBase = process.env.NEXT_PUBLIC_API_URL_BASE
 export const apiUrlCart = process.env.NEXT_PUBLIC_API_URL_CART
 export const apiUrlBlog = process.env.NEXT_PUBLIC_API_URL_BLOG
 export const apiUrlRegister = process.env.NEXT_PUBLIC_API_URL_REGISTER
+export const apiUrlLogin = process.env.NEXTAUTH_URL
+export const apiUrlDataFrom = process.env.NEXT_PUBLIC_API_URL_DATAFORM
+export const apiUrlReviews = process.env.NEXT_PUBLIC_API_URL_REVIEWS
+export const apiUrlBanner = process.env.NEXT_PUBLIC_API_URL_BANNER
