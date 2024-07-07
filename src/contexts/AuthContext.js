@@ -2,6 +2,7 @@
 'use client'
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { apiUrlVeriferUser } from '@/utils/api';
 
 const AuthContext = createContext();
 
@@ -12,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            axios.get('http://localhost:8080/verifyUser', {
+            axios.get(`${apiUrlVeriferUser}`, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             .then(response => {

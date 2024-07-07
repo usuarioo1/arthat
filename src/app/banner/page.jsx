@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { apiUrlBanner } from '@/utils/api';
 
 const Page = () => {
     const [banners, setBanners] = useState([]);
@@ -12,7 +13,7 @@ const Page = () => {
 
     const fetchBanners = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/banner');
+            const response = await axios.get(`${apiUrlBanner}`);
             if (response.data.success) {
                 setBanners(response.data.info);
             } else {
@@ -31,7 +32,7 @@ const Page = () => {
         if (!imageUrl) return;
 
         try {
-            await axios.post('http://localhost:8080/banner', { imageUrl });
+            await axios.post(`${apiUrlBanner}`, { imageUrl });
             setImageUrl(''); // Clear input field
             fetchBanners(); // Refresh banners after upload
         } catch (error) {
@@ -42,7 +43,7 @@ const Page = () => {
     const handleDelete = async (id) => {
         if (!id) return;
         try {
-            await axios.delete(`http://localhost:8080/banner/${id}`);
+            await axios.delete(`${apiUrlBanner}/${id}`);
             fetchBanners(); // Refresh banners after deletion
         } catch (error) {
             console.error('Error deleting banner:', error);

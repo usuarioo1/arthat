@@ -1,7 +1,8 @@
-// components/CustomerDetailsForm.js
 'use client'
 import { useState } from 'react';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { apiUrlDataFrom } from '@/utils/api';
 
 const regions = [
     'Arica y Parinacota',
@@ -26,7 +27,7 @@ const CustomerDetailsForm = () => {
     const [formData, setFormData] = useState({
         name: '',
         address: '',
-        email: '',
+        mail: '',
         phone: '',
         region: '',
         comuna: '',
@@ -45,19 +46,20 @@ const CustomerDetailsForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Enviar datos a la base de datos
-        const response = await fetch('/api/saveCustomerDetails', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
-        if (response.ok) {
-            router.push('/checkout');
-        } else {
-            // Manejar error
-            console.error('Error saving customer details');
+        try {
+            const response = await axios.post(`${apiUrlDataFrom}`, formData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (response.status === 200) {
+                alert('Detalles del cliente guardados con éxito');
+                router.push('/checkout');
+            } else {
+                console.error('Error saving customer details');
+            }
+        } catch (error) {
+            console.error('Error saving customer details', error);
         }
     };
 
@@ -93,7 +95,7 @@ const CustomerDetailsForm = () => {
                     type="email" 
                     id="email" 
                     name="email" 
-                    value={formData.email} 
+                    value={formData.mail} 
                     onChange={handleChange} 
                     required 
                     className="input input-bordered w-full bg-white text-black"

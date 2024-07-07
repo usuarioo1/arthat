@@ -2,7 +2,9 @@
 
 import { useState, useContext } from 'react';
 import Link from 'next/link';
+import axios from 'axios';
 import AuthContext from '@/contexts/AuthContext';
+import { apiUrlLogin } from '@/utils/api';
 
 export default function Login() {
     const [mail, setMail] = useState('');
@@ -13,23 +15,15 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:8080/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ mail, password })
-            });
+            const response = await axios.post(`${apiUrlLogin}`, { mail, password });
 
-            const data = await response.json();
-
-            if (!data.success) {
-                setError(data.message);
+            if (!response.data.success) {
+                setError(response.data.message);
             } else {
                 // Guardar el token en local storage
-                localStorage.setItem('token', data.token);
+                localStorage.setItem('token', response.data.token);
                 // Llamar al método de login en el contexto
-                login(data.token);
+                login(response.data.token);
                 window.location.href = '/';
                 alert('Inicio de sesión exitoso');
             }

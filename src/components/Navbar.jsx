@@ -1,12 +1,14 @@
+// components/Navbar.js
 'use client'
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import { CartContext } from "@/contexts/CartContext";
-import AuthContext from "@/contexts/AuthContext"; // Importamos el contexto de autenticación
+import AuthContext from "@/contexts/AuthContext";
+import BotonPanel from "@/components/BotonPanel"; // Importamos el BotonPanel
 
-const Navbar = (props) => {
+const Navbar = () => {
     const { cartItems } = useContext(CartContext);
-    const { user, logout } = useContext(AuthContext); // Obtenemos el usuario y la función de logout del contexto de autenticación
+    const { user, logout } = useContext(AuthContext); 
     const cantidadTotal = cartItems.reduce((total, item) => total + item.quantity, 0);
     const precioTotal = cartItems.reduce((total, item) => total + (item.precio * item.quantity), 0);
 
@@ -32,7 +34,6 @@ const Navbar = (props) => {
                 <Link href={'/'}>
                     <img src="https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg" alt="ARTHAT LOGO" className="w-50 h-40 mx-auto sm:-ml-4" />
                 </Link>
-                {/* Hamburger Menu */}
                 <div className="dropdown sm:hidden mt-2">
                     <label tabIndex={0} className="btn btn-ghost btn-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -72,7 +73,7 @@ const Navbar = (props) => {
             </div>
             <div className="navbar-end mr-10">
                 <div className="hidden sm:block">
-                    {/* <BotonPanel /> */}
+                    {user && user.isAdmin && <BotonPanel />} {/* Condicionalmente renderizamos el BotonPanel */}
                 </div>
                 {user ? (
                     <>
@@ -93,21 +94,21 @@ const Navbar = (props) => {
                             <span className="badge badge-sm indicator-item">{cantidadTotal}</span>
                         </div>
                     </div>
-                    <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 shadow bg-slate-100">
+                    <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
                         <div className="card-body">
-                            <span className="font-bold text-lg text-black">{cantidadTotal} Items</span>
-                            <span className="text-black">Subtotal: ${precioTotal}</span>
-                            <Link href='/viewCart'>
-                                <div className="card-actions">
-                                    <button className="btn btn-block bg-yellow-500 text-black hover:bg-yellow-300">Ir al carrito</button>
-                                </div>
-                            </Link>
+                            <span className="font-bold text-lg">{cantidadTotal} Productos</span>
+                            <span className="text-info">Subtotal: ${precioTotal.toFixed(2)}</span>
+                            <div className="card-actions">
+                                <Link href='/viewCart'>
+                                    <button className="btn btn-primary btn-block">Ver Carrito</button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     );
-};
+}
 
 export default Navbar;
