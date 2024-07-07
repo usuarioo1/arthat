@@ -1,19 +1,24 @@
 // components/ProtectedRoute.js
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 const ProtectedRoute = ({ children }) => {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
-        if (!user || user.role !== 'admin') {
+        if (!loading && (!user || !user.isAdmin)) {
             router.push('/login');
         }
-    }, [user]);
+    }, [user, loading]);
 
-    return user && user.role === 'admin' ? children : null;
+    if (loading) {
+        return <div>Loading...</div>; // Puedes mostrar un spinner o algún indicador de carga
+    }
+
+    return user && user.isAdmin ? children : null;
 };
 
 export default ProtectedRoute;
+

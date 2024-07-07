@@ -7,6 +7,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -20,7 +21,12 @@ export const AuthProvider = ({ children }) => {
             .catch(error => {
                 console.error('Error verificando el token:', error);
                 localStorage.removeItem('token');
+            })
+            .finally(() => {
+                setLoading(false);
             });
+        } else {
+            setLoading(false);
         }
     }, []);
 
@@ -44,10 +50,13 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, loading, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
+export const useAuth = () => React.useContext(AuthContext);
+
 export default AuthContext;
+
