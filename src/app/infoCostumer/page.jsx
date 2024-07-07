@@ -1,3 +1,4 @@
+// components/CustomerDetailsForm.js
 'use client'
 import { useState } from 'react';
 import axios from 'axios';
@@ -52,13 +53,10 @@ const CustomerDetailsForm = () => {
                     'Content-Type': 'application/json'
                 }
             });
-            if (response.status === 200) {
-                alert('Detalles del cliente guardados con éxito');
-                router.push('/checkout');
-            } else {
-                console.error('Error saving customer details');
-            }
+            alert('Detalles del cliente guardados con éxito');
+            router.push('/checkout');
         } catch (error) {
+            alert('Error guardando los detalles del cliente');
             console.error('Error saving customer details', error);
         }
     };
@@ -90,11 +88,11 @@ const CustomerDetailsForm = () => {
                 />
             </div>
             <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <label htmlFor="mail" className="block text-sm font-medium text-gray-700">Email</label>
                 <input 
                     type="email" 
-                    id="email" 
-                    name="email" 
+                    id="mail" 
+                    name="mail" 
                     value={formData.mail} 
                     onChange={handleChange} 
                     required 
