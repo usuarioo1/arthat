@@ -1,7 +1,8 @@
+import { apiUrlBase } from "@/utils/api";
 import axios from "axios"
 
 const axiosClient = axios.create({
-    baseURL: 'https://backend-gamelink.onrender.com'
+    baseURL: `${apiUrlBase}`
 })
 
 export default axiosClient;
