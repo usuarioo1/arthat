@@ -7,6 +7,8 @@ import Reviews from "@/components/Reviews";
 
 export default function Home() {
 
+  //hacer llamada a la api a banner
+
   const images = [
     'https://via.placeholder.com/800x200.png?text=Slide+1',
     'https://via.placeholder.com/800x200.png?text=Slide+2',
