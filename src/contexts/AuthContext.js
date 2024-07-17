@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = (token) => {
         localStorage.setItem('token', token);
-        axios.get('http://localhost:8080/verifyUser', {
+        axios.get(apiUrlVeriferUser, {
             headers: { Authorization: `Bearer ${token}` }
         })
         .then(response => {
