@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import { apiUrlReviews } from '@/utils/api';
+import axios from 'axios';
+import { apiUrlReviews } from '@/utils/api';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([
@@ -10,19 +10,19 @@ const Reviews = () => {
     { title: 'Gran Compra', content: 'Vale cada centavo, lo amo.', author: 'Carlos García' }
   ]);
 
-  // useEffect(() => {
-  //   const fetchReviews = async () => {
-  //     try {
-  //       const response = await axios.get(apiUrlReviews);
-  //       setReviews(response.data);
-  //     } catch (error) {
-  //       console.error('Error fetching reviews:', error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(apiUrlReviews);
+        setReviews(response.data.info);
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
 
-  //   fetchReviews();
-  // }, []);
-
+    fetchReviews();
+  }, []);
+  
   return (
     <div className="flex flex-col items-center mb-10">
       <h2 className="text-2xl font-bold mb-6 text-black">Reseñas</h2>

@@ -40,6 +40,9 @@ const Navbar = () => {
                         {user ? (
                             <>
                                 <span className="mr-4 text-black text-xl">Hola, {user.name}</span>
+                                <Link href='/profile'>
+                                    <button className="btn mx-6 text-white">Mi Perfil</button>
+                                </Link>
                                 <button className="btn mx-6 text-white" onClick={logout}>Cerrar Sesión</button>
                             </>
                         ) : (
@@ -83,6 +86,11 @@ const Navbar = () => {
                             <>
                                 <li>
                                     <span>Hola, {user.name}</span>
+                                </li>
+                                <li>
+                                    <Link href='/profile'>
+                                        <button>Mi Perfil</button>
+                                    </Link>
                                 </li>
                                 <li>
                                     <button onClick={logout}>Cerrar Sesión</button>
