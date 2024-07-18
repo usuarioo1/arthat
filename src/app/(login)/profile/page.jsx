@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '@/contexts/AuthContext';
+import AddReviewForm from '@/components/AddReviews';
 
 const UserProfile = () => {
     const { user, loading } = useContext(AuthContext);
@@ -70,6 +71,7 @@ const UserProfile = () => {
     }
 
     return (
+        <div>
         <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-md rounded-lg mb-9">
             <h2 className="text-2xl font-bold mb-4 text-black">Perfil de Usuario</h2>
             {isEditing ? (
@@ -202,6 +204,9 @@ const UserProfile = () => {
                     </button>
                 </div>
             )}
+            
+        </div>
+        <AddReviewForm />
         </div>
     );
 }
