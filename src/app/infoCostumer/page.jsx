@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { apiUrlDataFrom } from '@/utils/api';
+import { apiUrlDataForm } from '@/utils/api';
 
 const regions = [
     'Arica y Parinacota',
@@ -48,7 +48,7 @@ const CustomerDetailsForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${apiUrlDataFrom}`, formData, {
+            const response = await axios.post(`${apiUrlDataForm}`, formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
