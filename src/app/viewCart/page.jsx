@@ -124,91 +124,90 @@ function ViewCart() {
     };
 
     return (
-        <div>
-            <div className="container mx-auto px-4">
-                <div>
-                    <h2 className="text-2xl font-semibold mb-4 text-black">Carrito de compras</h2>
-                    <br />
-                    <table className="min-w-full border-collapse">
-                        <thead>
-                            <tr>
-                                <th className="border border-gray-300 px-4 py-2 w-24"></th>
-                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Producto</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Precio</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Cantidad</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Alto (mm)</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Ancho (mm)</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Diámetro (mm)</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left text-black ">Peso (gr)</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Color</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Disminuir</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left text-black">Aumentar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {cartItems.map((row, index) => (
-                                <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
-                                    <td className="border border-gray-300 px-4 py-2 text-left"><img src={row.img} alt="" className='w-24' /></td>
-                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.nombre}</td>
-                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.precio}</td>
-                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.quantity}</td>
-                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.alto}</td>
-                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.ancho}</td>
-                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.diametro}</td>
-                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.peso}</td>
-                                    <td className="border border-gray-300 px-4 py-2 text-left">{row.color}</td>
-                                    <td className="border border-gray-300 px-4 py-2 text-left">
-                                        <button
-                                            className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
-                                            onClick={() => handleRemoveItem(row._id)}
-                                        >
-                                            Eliminar
-                                        </button>
-                                    </td>
-                                    <td className="border border-gray-300 px-4 py-2 text-left">
-                                        <button
-                                            className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700"
-                                            onClick={() => handleToItem(row)}
-                                        >
-                                            Aumentar
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <br />
-                    <h2 className=" btn btn-outline text-xl font-semibold mb-4">Total: $ {precioTotal}</h2>
-                    <br />
-                    <div className='gap-5 '>
-                        <Link href={'/infoCostumer'}>
-                            <button className="btn btn-primary" onClick={guardarCarrito}>
-
-                                Continuar con el pago
-
-
+        <div className="sm:container mx-auto sm:px-4 px-1">
+    <div>
+        <h2 className="text-2xl font-semibold mb-4 text-black text-center sm:text-left">Carrito de compras</h2>
+        <br />
+        <table className="min-w-full border-collapse">
+            <thead>
+                <tr>
+                    <th className="border border-gray-300 px-2 py-1 w-24 hidden sm:table-cell"></th>
+                    <th className="border border-gray-300 px-2 py-1 text-left text-black">Producto</th>
+                    <th className="border border-gray-300 px-2 py-1 text-left text-black">Precio</th>
+                    <th className="border border-gray-300 px-2 py-1 text-left text-black">Cantidad</th>
+                    <th className="border border-gray-300 px-2 py-1 text-left text-black hidden sm:table-cell">Alto (mm)</th>
+                    <th className="border border-gray-300 px-2 py-1 text-left text-black hidden sm:table-cell">Ancho (mm)</th>
+                    <th className="border border-gray-300 px-2 py-1 text-left text-black hidden sm:table-cell">Diámetro (mm)</th>
+                    <th className="border border-gray-300 px-2 py-1 text-left text-black hidden sm:table-cell">Peso (gr)</th>
+                    <th className="border border-gray-300 px-2 py-1 text-left text-black hidden sm:table-cell">Color</th>
+                    <th className="border border-gray-300 px-2 py-1 text-left text-black">Disminuir</th>
+                    <th className="border border-gray-300 px-2 py-1 text-left text-black">Aumentar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {cartItems.map((row, index) => (
+                    <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
+                        <td className="border border-gray-300 px-2 py-1 text-left hidden sm:table-cell">
+                            <img src={row.img} alt="" className='w-16' />
+                        </td>
+                        <td className="border border-gray-300 px-2 py-1 text-left text-black">{row.nombre}</td>
+                        <td className="border border-gray-300 px-2 py-1 text-left text-black">{row.precio}</td>
+                        <td className="border border-gray-300 px-2 py-1 text-left text-black">{row.quantity}</td>
+                        <td className="border border-gray-300 px-2 py-1 text-left text-black hidden sm:table-cell">{row.alto}</td>
+                        <td className="border border-gray-300 px-2 py-1 text-left text-black hidden sm:table-cell">{row.ancho}</td>
+                        <td className="border border-gray-300 px-2 py-1 text-left text-black hidden sm:table-cell">{row.diametro}</td>
+                        <td className="border border-gray-300 px-2 py-1 text-left text-black hidden sm:table-cell">{row.peso}</td>
+                        <td className="border border-gray-300 px-2 py-1 text-left text-black hidden sm:table-cell">{row.color}</td>
+                        <td className="border border-gray-300 px-2 py-1 text-left">
+                            <button
+                                className="bg-red-500 text-white px-1 py-0.5 rounded hover:bg-red-700 text-xs"
+                                onClick={() => handleRemoveItem(row._id)}
+                            >
+                                Eliminar
                             </button>
-                        </Link>
-                        {typeof window !== 'undefined' && (
-                            <PDFDownloadLink document={<Pdf cartItems={cartItems} total={precioTotal} />} fileName='cotizacion'>
-                                {({ loading }) => loading ? (
-                                    <button className="btn btn-neutral ml-5">
-                                        Generando cotización
-                                    </button>
-                                ) : (
-                                    <button className="btn btn-neutral ml-5">
-                                        Descargar Cotización <IoDocumentOutline />
-                                    </button>
-                                )}
-                            </PDFDownloadLink>
-                        )}
-                    </div>
-                    <br />
-                    <br />
-
-                </div>
-            </div>
+                        </td>
+                        <td className="border border-gray-300 px-2 py-1 text-left">
+                            <button
+                                className="bg-green-500 text-white px-1 py-0.5 rounded hover:bg-green-700 text-xs"
+                                onClick={() => handleToItem(row)}
+                            >
+                                Aumentar
+                            </button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+        <br />
+        <h2 className="btn btn-outline text-xl font-semibold mb-4 text-black">Total: $ {precioTotal}</h2>
+        <br />
+        <div className='gap-5'>
+            <Link href={'/infoCostumer'}>
+                <button className="btn btn-primary" onClick={guardarCarrito}>
+                    Continuar con el pago
+                </button>
+            </Link>
+            {typeof window !== 'undefined' && (
+                <PDFDownloadLink document={<Pdf cartItems={cartItems} total={precioTotal} />} fileName='cotizacion'>
+                    {({ loading }) => loading ? (
+                        <button className="btn btn-neutral ml-5">
+                            Generando cotización
+                        </button>
+                    ) : (
+                        <button className="btn btn-neutral ml-5">
+                            Descargar Cotización <IoDocumentOutline />
+                        </button>
+                    )}
+                </PDFDownloadLink>
+            )}
         </div>
+        <br />
+        <br />
+    </div>
+</div>
+
+
+
     );
 }
 

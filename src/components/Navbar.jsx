@@ -62,7 +62,7 @@ const Navbar = () => {
                             <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow z-50">
                                 <div className="card-body">
                                     <span className="font-bold text-lg">{cantidadTotal} Productos</span>
-                                    <span className="text-info">Subtotal: ${precioTotal.toFixed(2)}</span>
+                                    <span className="text-info">Subtotal: ${precioTotal}</span>
                                     <div className="card-actions">
                                         <Link href='/viewCart'>
                                             <button className="btn btn-primary btn-block">Ver Carrito</button>

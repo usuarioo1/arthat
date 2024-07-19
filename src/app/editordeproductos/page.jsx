@@ -1,4 +1,5 @@
 'use client'
+import { apiUrlBase } from '@/utils/api';
 import { useState } from 'react';
 
 const ProductEditor = ({ onUpdate }) => {
@@ -19,7 +20,7 @@ const ProductEditor = ({ onUpdate }) => {
 
         for (const category of categories) {
             try {
-                const response = await fetch(`http://localhost:8080/${category}`);
+                const response = await fetch(`${apiUrlBase}/${category}`);
                 if (response.ok) {
                     const data = await response.json();
                     const product = data.info.find(item => item.codigo === productCode);
@@ -60,7 +61,7 @@ const ProductEditor = ({ onUpdate }) => {
         setSuccess(null);
 
         try {
-            const response = await fetch(`http://localhost:8080/${productData.category}/${productData._id}`, {
+            const response = await fetch(`${apiUrlBase}/${productData.category}/${productData._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
