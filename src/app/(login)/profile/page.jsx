@@ -4,6 +4,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '@/contexts/AuthContext';
 import AddReviewForm from '@/components/AddReviews';
+import { apiUrlUsers } from '@/utils/api';
 
 const UserProfile = () => {
     const { user, loading } = useContext(AuthContext);
@@ -25,7 +26,7 @@ const UserProfile = () => {
         if (user) {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:8080/users/${user._id}`, {
+                    const response = await axios.get(`${apiUrlUsers}/${user._id}`, {
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                     });
                     setProfileData(response.data.info);
@@ -47,7 +48,7 @@ const UserProfile = () => {
 
     const handleSave = async () => {
         try {
-            const response = await axios.put(`http://localhost:8080/users/${user._id}`, formData, {
+            const response = await axios.put(`${apiUrlUsers}/${user._id}`, formData, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             setProfileData(response.data.info);

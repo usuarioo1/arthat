@@ -13,3 +13,4 @@ export const apiUrlDataForm = process.env.NEXT_PUBLIC_API_URL_DATAFORM
 export const apiUrlReviews = process.env.NEXT_PUBLIC_API_URL_REVIEWS
 export const apiUrlBanner = process.env.NEXT_PUBLIC_API_URL_BANNER
 export const apiUrlVeriferUser = process.env.NEXT_PUBLIC_API_URL_VERIFER_USER
+export const apiUrlUsers = process.env.NEXT_PUBLIC_API_URL_USERS
