@@ -58,7 +58,7 @@ const RunasPage = ({ params }) => {
         <div>
         <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 m-auto mt-32 mb-20">
             <div     className="w-full md:flex"> {/* Adjust the width and flex behavior based on screen size */}
-                <img className="h-full w-full object-cover md:w-1/4 md:h-auto" src={product.img} alt={product.nombre} /> {/* Adjust image size and flex behavior based on screen size */}
+                <img className="h-full w-full object-contain md:w-1/4 md:h-auto" src={product.img} alt={product.nombre} /> {/* Adjust image size and flex behavior based on screen size */}
                 <div className="w-full md:w-3/4 p-4 md:pl-8 flex flex-col justify-start items-start"> {/* Centered content */}
                     <h2 className="text-gray-800 font-semibold text-3xl">{product.nombre}</h2>
                     <p className="text-gray-600 mt-2">Código: {product.codigo}</p> {/* SKU */}

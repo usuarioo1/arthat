@@ -24,7 +24,7 @@ const ListaRunas = ({nombre, img, precio}) => {
                     <Link href={`/runas/${producto._id}`}>
                         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                             <div className="aspect-w-1 aspect-h-1">
-                                <img className="object-cover" src={producto.img} alt="Imagen Producto" />
+                                <img className="object-contain" src={producto.img} alt="Imagen Producto" />
                             </div>
                             <div className="px-4 py-2">
                                 <h3 className="text-gray-800 font-semibold text-lg">{producto.nombre}</h3>
