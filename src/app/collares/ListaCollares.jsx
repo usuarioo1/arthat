@@ -1,27 +1,39 @@
 'use client'
-import { useEffect, useState } from 'react'
-import Link  from 'next/link'
-import { apiUrlRunas } from '@/utils/api'
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { apiUrlCollares } from "@/utils/api";
 
+const getData = async () => {
+    const res = await fetch(apiUrlCollares);
 
-const ListaRunas = ({nombre, img, precio}) => {
+    if (!res.ok) {
+        throw new Error("¡Algo pasó!");
+    }
 
-    const [runaList, setRunasList] = useState([])
+    return res.json();
+};
 
+const ListaCollares = () => {
+    const [collaresFetch, setCollaresFetch] = useState([]);
 
     useEffect(() => {
-        // Realizar la solicitud a la API al cargar el componente
-        fetch(apiUrlRunas)
-            .then(response => response.json())
-            .then(data => setRunasList(data.info)) // Extraemos la lista de juegos de la respuesta de la API
-            .catch(error => console.error("Error fetching data:", error));
-    }, []); // El array vacío como segundo argumento asegura que useEffect se ejecute solo una vez al montar el componente
+        const fetchCollares = async () => {
+            try {
+                const data = await getData();
+                setCollaresFetch(data.info);
+            } catch (error) {
+                console.error("Error al obtener los datos:", error);
+            }
+        };
+
+        fetchCollares();
+    }, []);
 
     return (
         <div className="flex flex-wrap justify-center mt-20">
-            {runaList.map((producto, index) => (
+            {collaresFetch.map((producto, index) => (
                 <div key={index} className="w-1/3 sm:w-1/4 md:w-1/6 p-2">
-                    <Link href={`/runas/${producto._id}`}>
+                    <Link href={`/amuletos/${producto._id}`}>
                         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                             <div className="aspect-w-1 aspect-h-1">
                                 <img className="object-contain" src={producto.img} alt="Imagen Producto" />
@@ -36,6 +48,6 @@ const ListaRunas = ({nombre, img, precio}) => {
             ))}
         </div>
     );
-}
+};
 
-export default ListaRunas
+export default ListaCollares;
