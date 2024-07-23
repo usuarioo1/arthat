@@ -16,6 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      
       <AuthProvider>
         <CartContextProvider>
           <body className={inter.className + " bg-white"}><Navbar />  <SocialMediaIcons />{children} <SocialMediaIcons /><Footer /></body>
