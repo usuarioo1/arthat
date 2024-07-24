@@ -1,10 +1,10 @@
 'use client'
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { apiUrlMadreNaturalez } from "@/utils/api";
+import { apiUrlRunas } from "@/utils/api";
 
 const getData = async () => {
-    const res = await fetch(apiUrlMadreNaturalez);
+    const res = await fetch(apiUrlRunas);
 
     if (!res.ok) {
         throw new Error("¡Algo pasó!");
@@ -13,25 +13,25 @@ const getData = async () => {
     return res.json();
 };
 
-const ListaMadreNaturaleza  = () => {
-    const [madreNaturalezaFetch, setMadreNaturalezaFetch] = useState([]);
+const ListaRunas  = () => {
+    const [runasFetch, setRunasFetch] = useState([]);
 
     useEffect(() => {
-        const fetchMadreNaturaleza = async () => {
+        const fetchRunas = async () => {
             try {
                 const data = await getData();
-                setMadreNaturalezaFetch(data.info);
+                setRunasFetch(data.info);
             } catch (error) {
                 console.error("Error al obtener los datos:", error);
             }
         };
 
-        MadreNaturalezaFetch();
+        fetchRunas();
     }, []);
 
     return (
         <div className="flex flex-wrap justify-center mt-20">
-            {madreNaturalezaFetch.map((producto, index) => (
+            {runasFetch.map((producto, index) => (
                 <div key={index} className="w-1/3 sm:w-1/4 md:w-1/6 p-2">
                     <Link href={`/amuletos/${producto._id}`}>
                         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -50,4 +50,4 @@ const ListaMadreNaturaleza  = () => {
     );
 };
 
-export default ListaMadreNaturaleza;
+export default ListaRunas;

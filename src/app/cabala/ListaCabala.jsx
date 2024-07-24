@@ -13,25 +13,25 @@ const getData = async () => {
     return res.json();
 };
 
-const ListaArosPlataLisa = () => {
-    const [arosPlataLisaFetch, setArosPlataLisaFetch] = useState([]);
+const ListaCabala = () => {
+    const [cabalaFetch, setCabalaFetch] = useState([]);
 
     useEffect(() => {
-        const fetchArosPlataLisa = async () => {
+        const fetchCabala = async () => {
             try {
                 const data = await getData();
-                setArosPlataLisaFetch(data.info);
+                setCabalaFetch(data.info);
             } catch (error) {
                 console.error("Error al obtener los datos:", error);
             }
         };
 
-        fetchArosPlataLisa();
+        fetchCabala();
     }, []);
 
     return (
         <div className="flex flex-wrap justify-center mt-20">
-            {arosPlataLisaFetch.map((producto, index) => (
+            {cabalaFetch.map((producto, index) => (
                 <div key={index} className="w-1/3 sm:w-1/4 md:w-1/6 p-2">
                     <Link href={`/amuletos/${producto._id}`}>
                         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -50,4 +50,4 @@ const ListaArosPlataLisa = () => {
     );
 };
 
-export default ListaArosPlataLisa;
+export default ListaCabala;

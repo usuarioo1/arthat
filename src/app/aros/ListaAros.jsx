@@ -1,10 +1,10 @@
 'use client'
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { apiUrlColgantesPlataLisa } from "@/utils/api";
+import { apiUrlAros } from "@/utils/api";
 
 const getData = async () => {
-    const res = await fetch(apiUrlColgantesPlataLisa);
+    const res = await fetch(apiUrlAros)
 
     if (!res.ok) {
         throw new Error("¡Algo pasó!");
@@ -13,25 +13,25 @@ const getData = async () => {
     return res.json();
 };
 
-const ListaColgantesPlataLisa = () => {
-    const [colgantesPlataLisaFetch, setColgantesPlataLisaFetch] = useState([]);
+const ListaAros = () => {
+    const [arosFetch, setArosFetch] = useState([]);
 
     useEffect(() => {
-        const fetchColgantesPlataLisa = async () => {
+        const fetchAros = async () => {
             try {
                 const data = await getData();
-                setColgantesPlataLisaFetch(data.info);
+                setArosFetch(data.info);
             } catch (error) {
                 console.error("Error al obtener los datos:", error);
             }
         };
 
-        fetchColgantesPlataLisa();
+        fetchAros();
     }, []);
 
     return (
         <div className="flex flex-wrap justify-center mt-20">
-            {colgantesPlataLisaFetch.map((producto, index) => (
+            {arosFetch.map((producto, index) => (
                 <div key={index} className="w-1/3 sm:w-1/4 md:w-1/6 p-2">
                     <Link href={`/amuletos/${producto._id}`}>
                         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -50,4 +50,4 @@ const ListaColgantesPlataLisa = () => {
     );
 };
 
-export default ListaColgantesPlataLisa;
+export default ListaAros;

@@ -1,12 +1,12 @@
 'use client';
 import React, { useState, useEffect, useContext } from 'react';
 import { CartContext } from '@/contexts/CartContext';
-import {apiUrlMadreNaturalez } from '@/utils/api';
-import ListaMadreNaturaleza from '../ListaMadreNaturaleza';
+import { apiUrlRunas } from '@/utils/api';
+import ListaReligioso from '../ListaReligioso';
 
 const Page = ({ params }) => {
 
-    const {MadreNaturalezaId} = params;
+    const {runasId} = params;
     const { id } = params; // 
     const [product, setProduct] = useState(null);
 
@@ -15,7 +15,7 @@ const Page = ({ params }) => {
     
     const fetchProductDetails = async () => {
         try {
-            const response = await fetch(`${apiUrlMadreNaturalez}/${MadreNaturalezaId}`);
+            const response = await fetch(`${apiUrlRunas}/${runasId}`);
             console.log('Response status:', response.status);
             const data = await response.json();
             console.log('Data from API:', data);
@@ -74,7 +74,7 @@ const Page = ({ params }) => {
                 </div>
             </div>
         </div>
-        <ListaMadreNaturaleza />
+        <ListaReligioso />
         </div>
     );
 };

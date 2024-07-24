@@ -2,6 +2,7 @@ import Categorias from "@/components/Categorias";
 import ListaDeBlogs from "./blog/ListaDeBlogs";
 import Carousel from "@/components/Carousel";
 import Reviews from "@/components/Reviews";
+import UltimosModelos from "@/components/UltimosModelos";
 
 
 
@@ -20,6 +21,7 @@ export default function Home() {
 
       <Carousel images={images} />
       <Categorias />
+      <UltimosModelos />
       <ListaDeBlogs />
       <Reviews />
       

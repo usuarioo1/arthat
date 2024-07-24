@@ -1,12 +1,12 @@
 'use client';
 import React, { useState, useEffect, useContext } from 'react';
 import { CartContext } from '@/contexts/CartContext';
-import { apiUrlColgantesPlataLisa } from '@/utils/api';
-import ListaColgantesPlataLisa from '../ListaColgantesPlataLisa';
+import { apiUrlArosPiedrasNaturales } from '@/utils/api';
+import ListaArosPiedrasNaturales from '../ListaAros';
 
 const Page = ({ params }) => {
 
-    const {colgantesPlataLisaId} = params;
+    const {arosPiedrasNaturalesId} = params;
     const { id } = params; // 
     const [product, setProduct] = useState(null);
 
@@ -15,7 +15,7 @@ const Page = ({ params }) => {
     
     const fetchProductDetails = async () => {
         try {
-            const response = await fetch(`${apiUrlColgantesPlataLisa}/${colgantesPlataLisaId}`);
+            const response = await fetch(`${apiUrlArosPiedrasNaturales}/${arosPiedrasNaturalesId}`);
             console.log('Response status:', response.status);
             const data = await response.json();
             console.log('Data from API:', data);
@@ -74,7 +74,7 @@ const Page = ({ params }) => {
                 </div>
             </div>
         </div>
-        <ListaColgantesPlataLisa/>
+        <ListaArosPiedrasNaturales />
         </div>
     );
 };

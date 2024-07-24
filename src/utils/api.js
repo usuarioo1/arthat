@@ -1,8 +1,6 @@
 export const apiUrlAmuletos = process.env.NEXT_PUBLIC_API_URL_AMULETOS
 export const apiUrlAnillos = process.env.NEXT_PUBLIC_API_URL_ANILLOS
-export const apiUrlMadres = process.env.NEXT_PUBLIC_API_URL_MADRES
-export const apiUrlNinos = process.env.NEXT_PUBLIC_API_URL_NINOS
-export const apiUrlProfesiones = process.env.NEXT_PUBLIC_API_URL_PROFESIONES
+
 export const apiUrlRunas = process.env.NEXT_PUBLIC_API_URL_RUNAS
 export const apiUrlBase = process.env.NEXT_PUBLIC_API_URL_BASE
 export const apiUrlCart = process.env.NEXT_PUBLIC_API_URL_CART
@@ -14,11 +12,11 @@ export const apiUrlReviews = process.env.NEXT_PUBLIC_API_URL_REVIEWS
 export const apiUrlBanner = process.env.NEXT_PUBLIC_API_URL_BANNER
 export const apiUrlVeriferUser = process.env.NEXT_PUBLIC_API_URL_VERIFER_USER
 export const apiUrlUsers = process.env.NEXT_PUBLIC_API_URL_USERS
-export const apiUrlColgantesPlataLisa = process.env.NEXT_PUBLIC_API_URL_COLGANTES_PLATA_LISA
-export const apiUrlArosPiedrasNaturales = process.env.NEXT_PUBLIC_API_URL_AROS_PIEDRAS_NATURALES
-export const apiUrlArosPlataLisa = process.env.NEXT_PUBLIC_API_URL_AROS_PLATA_LISA
-export const apiUrlColgantesPiedrasNaturales = process.NEXT_PUBLIC_API_URL_COLGANTES_PIEDRAS_NATURALES
+
+export const apiUrlAros = process.env.NEXT_PUBLIC_API_URL_AROS_PIEDRAS_NATURALES
+
+export const apiUrlColgantes = process.NEXT_PUBLIC_API_URL_COLGANTES_PIEDRAS_NATURALES
 export const apiUrlCollares = process.env.NEXT_PUBLIC_API_URL_COLLARES
-export const apiUrlMadreNaturalez = process.env.NEXT_PUBLIC_API_URL_MADRE_NATURALEZA
+
 export const apiUrlPulseras = process.env.NEXT_PUBLIC_API_URL_PULSERAS
 export const apiUrlCadenas = process.env.NEXT_PUBLIC_API_URL_CADENAS

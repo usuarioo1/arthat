@@ -1,12 +1,12 @@
 'use client';
 import React, { useState, useEffect, useContext } from 'react';
 import { CartContext } from '@/contexts/CartContext';
-import { apiUrlArosPlataLisa } from '@/utils/api';
-import ListaArosPlataLisa from '../ListaArosPlataLisa';
+import { apiUrlCabala } from '@/utils/api';
+import ListaCabala from '../ListaCabala';
 
 const Page = ({ params }) => {
 
-    const {arosPlataLisaId} = params;
+    const {calabaId} = params;
     const { id } = params; // 
     const [product, setProduct] = useState(null);
 
@@ -15,7 +15,7 @@ const Page = ({ params }) => {
     
     const fetchProductDetails = async () => {
         try {
-            const response = await fetch(`${apiUrlArosPlataLisa}/${arosPlataLisaId}`);
+            const response = await fetch(`${apiUrlCabala}/${cabalaId}`);
             console.log('Response status:', response.status);
             const data = await response.json();
             console.log('Data from API:', data);
@@ -74,7 +74,7 @@ const Page = ({ params }) => {
                 </div>
             </div>
         </div>
-        <ListaArosPlataLisa />
+        <ListaCabala />
         </div>
     );
 };

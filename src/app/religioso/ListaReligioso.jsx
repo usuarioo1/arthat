@@ -1,10 +1,10 @@
 'use client'
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { apiUrlArosPiedrasNaturales } from "@/utils/api";
+import { apiUrlReligioso } from "@/utils/api";
 
 const getData = async () => {
-    const res = await fetch(apiUrlArosPiedrasNaturales);
+    const res = await fetch(apiUrlReligioso);
 
     if (!res.ok) {
         throw new Error("¡Algo pasó!");
@@ -13,25 +13,25 @@ const getData = async () => {
     return res.json();
 };
 
-const ListaArosPiedrasNaturales = () => {
-    const [arosPiedrasNaturalesFetch, setArosPiedrasNaturalesFetch] = useState([]);
+const ListaReligioso  = () => {
+    const [religiosoFetch, setReligiosoFetch] = useState([]);
 
     useEffect(() => {
-        const fetchArosPiedrasNaturales = async () => {
+        const fetchReligioso = async () => {
             try {
                 const data = await getData();
-                setArosPiedrasNaturalesFetch(data.info);
+                setReligiosoFetch(data.info);
             } catch (error) {
                 console.error("Error al obtener los datos:", error);
             }
         };
 
-        fetchArosPiedrasNaturales();
+        fetchReligioso();
     }, []);
 
     return (
         <div className="flex flex-wrap justify-center mt-20">
-            {arosPiedrasNaturalesFetch.map((producto, index) => (
+            {religiosoFetch.map((producto, index) => (
                 <div key={index} className="w-1/3 sm:w-1/4 md:w-1/6 p-2">
                     <Link href={`/amuletos/${producto._id}`}>
                         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -50,4 +50,4 @@ const ListaArosPiedrasNaturales = () => {
     );
 };
 
-export default ListaArosPiedrasNaturales;
+export default ListaReligioso;
