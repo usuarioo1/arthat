@@ -21,7 +21,7 @@ const ListaDeBlogs = () => {
     };
 
     return (
-        <div className='mx-auto my-8'>
+        <div className='mx-auto my-8 mt-56'>
             <Link href={'/blog'}>
                 <div className='text-center text-black text-2xl font-bold mb-4'>BLOG</div>
             </Link>

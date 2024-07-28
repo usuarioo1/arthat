@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 const Card = ({ href, src, alt, title }) => {
     return (
         <Link href={href}>
-            <div className="w-full sm:w-52 h-64 bg-gray-200 border-2 border-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 mx-1">
+            <div className=" sm:w-52 h-64 bg-gray-200 border-2 border-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 mx-1">
                 <img className="w-full h-48 object-contain mt-2" src={src} alt={alt} />
                 <div className="p-4 text-center">
                     <h3 className="text-gray-800 font-semibold text-lg">{title}</h3>
@@ -94,7 +94,7 @@ const Categorias = () => {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 5,
                     slidesToScroll: 1,
                     infinite: true,
                     dots: false

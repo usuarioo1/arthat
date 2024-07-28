@@ -6,7 +6,7 @@ import ListaCabala from '../ListaCabala';
 
 const Page = ({ params }) => {
 
-    const {calabaId} = params;
+    const {cabalaId} = params;
     const { id } = params; // 
     const [product, setProduct] = useState(null);
 

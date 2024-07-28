@@ -1,6 +1,6 @@
 export const apiUrlAmuletos = process.env.NEXT_PUBLIC_API_URL_AMULETOS
 export const apiUrlAnillos = process.env.NEXT_PUBLIC_API_URL_ANILLOS
-
+export const apiUrlReligioso = process.env.NEXT_PUBLIC_API_URL_RELIGIOSO
 export const apiUrlRunas = process.env.NEXT_PUBLIC_API_URL_RUNAS
 export const apiUrlBase = process.env.NEXT_PUBLIC_API_URL_BASE
 export const apiUrlCart = process.env.NEXT_PUBLIC_API_URL_CART
@@ -12,6 +12,7 @@ export const apiUrlReviews = process.env.NEXT_PUBLIC_API_URL_REVIEWS
 export const apiUrlBanner = process.env.NEXT_PUBLIC_API_URL_BANNER
 export const apiUrlVeriferUser = process.env.NEXT_PUBLIC_API_URL_VERIFER_USER
 export const apiUrlUsers = process.env.NEXT_PUBLIC_API_URL_USERS
+export const apiUrlCabala = process.env.NEXT_PUBLIC_API_CABALA
 
 export const apiUrlAros = process.env.NEXT_PUBLIC_API_URL_AROS_PIEDRAS_NATURALES
 
