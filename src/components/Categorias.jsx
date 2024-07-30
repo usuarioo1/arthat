@@ -87,17 +87,17 @@ const Categorias = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 8,
-        slidesToScroll: 1,
+        slidesToScroll: 2,
         autoplay: true,
         autoplaySpeed: 3000,
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 5,
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: false
+                    dots: true
                 }
             },
             {
@@ -113,7 +113,7 @@ const Categorias = () => {
     };
 
     return (
-        <div className="w-full my-24">
+        <div className="w-11/12 my-24">
             <Slider {...settings}>
                 {cards.map((card, index) => (
                     <Card key={index} {...card} />

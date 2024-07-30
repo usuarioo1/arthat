@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { apiUrlBlog } from "@/utils/api";
 import React from 'react';
+import ListaDeBlogs from "../ListaDeBlogs";
 
 const Page = ({ params }) => {
     const { blogId } = params;
@@ -40,15 +41,26 @@ const Page = ({ params }) => {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-white">
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden w-1/2 m-4 p-6">
+        <div>
+        <div className="flex items-center justify-center w-full bg-white">
+            <div className="bg-white rounded-lg overflow-hidden w-5/6 m-4 p-2">
                 <h1 className="text-3xl font-bold mb-4 text-center text-black">{blog.titulo}</h1>
-                <img src={blog.img} alt={blog.titulo} className="w-full h-auto object-cover mb-4 rounded" />
+                <img
+                    src={blog.img}
+                    alt={blog.titulo}
+                    className="w-full h-96 object-cover mb-4" // Ajusta la altura aquí
+                />
                 <div className="prose prose-lg max-w-none">
-                    <p className="text-black">{blog.contenido}</p>
+                    <p className="text-black text-2xl">{blog.contenido}</p>
                 </div>
             </div>
+            
         </div>
+        <div className="flex items-center justify-center">
+        <ListaDeBlogs />
+        </div>
+        </div>
+
     );
 };
 

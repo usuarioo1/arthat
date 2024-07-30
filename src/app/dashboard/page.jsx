@@ -119,12 +119,15 @@ function AgregarProducto() {
           </label>
           <select className="shadow border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-white" id="categoria" onChange={handleCategoriaChange}>
             <option value="">Selecciona una categoría</option>
-            <option value="createNino">Niños Ela</option>
-            <option value="createMadre">Madres y Niños</option>
+            <option value="createCabala">Cábala</option>
+            <option value="createCadena">Cadenas</option>
             <option value="createAnillo">Anillos</option>
             <option value="createAmuleto">Amuletos</option>
             <option value="createRuna">Runas</option>
-            <option value="createProfesion">Profesiones</option>
+            <option value="createColgantePiedrasNaturales">Colgantes</option>
+            <option value="createAroPiedraNatural">Aros</option>
+            <option value="createPulsera">Pulseras</option>
+            <option value="createCollares">Collares</option>
             {/* Aquí puedes agregar las categorías que necesites */}
           </select>
         </div>

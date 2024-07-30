@@ -31,7 +31,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-center flex-1 flex justify-center">
                     <Link href={'/'}>
-                        <img src="https://res.cloudinary.com/dpbpyzl96/image/upload/v1714527762/arthat/guwmrw9dq6l9fspfnxhs.jpg" alt="ARTHAT LOGO" className="w-64 h-50" />
+                        <img src="https://res.cloudinary.com/dpbpyzl96/image/upload/v1722293732/arthat/ithhe5fggysp7fk9kn63.png" alt="ARTHAT LOGO" className="w-64 h-50" />
                     </Link>
                 </div>
                 <div className="navbar-end flex-1 flex items-center justify-end">

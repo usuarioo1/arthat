@@ -11,7 +11,7 @@ export default function Home() {
   //hacer llamada a la api a banner
 
   const images = [
-    'https://via.placeholder.com/800x200.png?text=Slide+1',
+    'https://res.cloudinary.com/dpbpyzl96/image/upload/v1722302380/arthat/tkt6a4lrtf2njrxm6gbp.jpg',
     'https://via.placeholder.com/800x200.png?text=Slide+2',
     'https://via.placeholder.com/800x200.png?text=Slide+3',
 
